@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact – ProxyBot Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#060B18;--blue:#0057FF;--cyan:#00C8F0;--mint:#00FFB2;--white:#F0F4FF;--grey:#8A92A6;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--white);font-family:'Poppins',sans-serif;overflow-x:hidden;min-height:100vh;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;background:rgba(6,11,24,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,240,0.1);}
+.logo{font-size:1.2rem;font-weight:800;color:var(--white);text-decoration:none;}
+.logo span{color:var(--cyan);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--grey);text-decoration:none;font-size:0.85rem;font-weight:600;transition:color .2s;}
+.nav-links a:hover{color:var(--mint);}
+.nav-cta{background:var(--blue);color:#fff;padding:0.55rem 1.4rem;border-radius:6px;text-decoration:none;font-size:0.85rem;font-weight:700;}
+
+/* HERO */
+.hero{padding:9rem 2.5rem 3rem;text-align:center;position:relative;}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:500px;background:radial-gradient(ellipse,rgba(0,200,240,0.12) 0%,transparent 70%);pointer-events:none;}
+.badge{display:inline-block;background:rgba(0,200,240,0.1);border:1px solid rgba(0,200,240,0.3);color:var(--cyan);font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:2px;padding:0.4rem 1rem;border-radius:50px;margin-bottom:1.5rem;text-transform:uppercase;}
+.hero h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;margin-bottom:0.8rem;}
+.hero h1 span{background:linear-gradient(90deg,var(--cyan),var(--mint));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{color:var(--grey);font-size:1rem;max-width:520px;margin:0 auto;}
+
+/* MAIN GRID */
+.main{max-width:1100px;margin:0 auto;padding:3rem 2.5rem 6rem;display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start;}
+
+/* INFO COLUMN */
+.info h2{font-size:1.3rem;font-weight:800;margin-bottom:0.5rem;}
+.info p{color:var(--grey);font-size:0.9rem;line-height:1.7;margin-bottom:2rem;}
+.contact-items{display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem;}
+.contact-item{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:1rem 1.2rem;}
+.contact-item .icon{width:40px;height:40px;border-radius:10px;background:rgba(0,200,240,0.1);border:1px solid rgba(0,200,240,0.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.contact-item .label{font-size:0.68rem;color:var(--grey);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.2rem;}
+.contact-item .value{font-size:0.9rem;font-weight:600;color:var(--white);}
+.contact-item a{color:var(--white);text-decoration:none;}
+.contact-item a:hover{color:var(--cyan);}
+.services-block h3{font-size:0.85rem;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem;}
+.service-tags{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.service-tag{background:rgba(0,87,255,0.12);border:1px solid rgba(0,87,255,0.25);color:var(--cyan);font-size:0.75rem;padding:0.3rem 0.8rem;border-radius:50px;font-weight:600;}
+
+/* FORM */
+.form-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:2.5rem;}
+.form-card h2{font-size:1.3rem;font-weight:800;margin-bottom:0.4rem;}
+.form-card p{color:var(--grey);font-size:0.85rem;margin-bottom:2rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.form-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;}
+.form-group label{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--grey);}
+.form-group input,
+.form-group select,
+.form-group textarea{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.85rem 1rem;color:var(--white);font-family:'Poppins',sans-serif;font-size:0.9rem;outline:none;transition:border-color .2s,background .2s;width:100%;}
+.form-group input::placeholder,
+.form-group textarea::placeholder{color:var(--grey);}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:rgba(0,200,240,0.5);background:rgba(0,200,240,0.05);}
+.form-group select option{background:var(--navy);color:var(--white);}
+.form-group textarea{resize:vertical;min-height:120px;}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--blue),var(--cyan));color:var(--navy);font-weight:800;font-size:1rem;padding:1rem;border:none;border-radius:8px;cursor:pointer;font-family:'Poppins',sans-serif;transition:transform .2s,box-shadow .2s;margin-top:0.5rem;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,200,240,0.3);}
+.submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+.form-note{font-size:0.75rem;color:var(--grey);margin-top:0.8rem;text-align:center;}
+
+/* SUCCESS */
+.success-msg{display:none;text-align:center;padding:2rem;}
+.success-msg .check{font-size:3rem;margin-bottom:1rem;}
+.success-msg h3{font-size:1.3rem;font-weight:800;margin-bottom:0.5rem;color:var(--mint);}
+.success-msg p{color:var(--grey);font-size:0.9rem;}
+
+footer{border-top:1px solid rgba(255,255,255,0.06);padding:2rem 2.5rem;text-align:center;color:var(--grey);font-size:0.8rem;}
+footer a{color:var(--grey);text-decoration:none;}
+@media(max-width:900px){.main{grid-template-columns:1fr;padding-left:1.2rem;padding-right:1.2rem;}.form-row{grid-template-columns:1fr;}}
+@media(max-width:768px){nav{padding:1rem 1.2rem;}.nav-links{display:none;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Proxy<span>Bot</span> Pro</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="creation-site.html">Création Site</a></li>
+    <li><a href="creation-plateforme.html">Plateformes</a></li>
+    <li><a href="bots-automatisation.html">Bots & IA</a></li>
+    <li><a href="contact.html" style="color:var(--cyan)">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Devis gratuit</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">/ contactez-nous /</div>
+  <h1>Parlons de votre<br/><span>projet digital</span></h1>
+  <p>Devis gratuit sous 48h. Décrivez votre besoin et on vous répond rapidement.</p>
+</section>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- INFO -->
+  <div class="info">
+    <h2>Nous sommes là pour vous</h2>
+    <p>ProxyBot Pro est une micro-entreprise locale basée en Sarthe. Vous n'êtes pas un ticket de support — on prend le temps d'écouter votre projet et de vous proposer la solution adaptée.</p>
+
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="icon">✉️</div>
+        <div>
+          <div class="label">Email</div>
+          <div class="value"><a href="mailto:contact@proxybotpro.fr">contact@proxybotpro.fr</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📞</div>
+        <div>
+          <div class="label">Téléphone</div>
+          <div class="value"><a href="tel:+33956372764">+33 9 56 37 27 64</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📍</div>
+        <div>
+          <div class="label">Localisation</div>
+          <div class="value">Fontenay-sur-Vègre, Sarthe (72)</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">🌐</div>
+        <div>
+          <div class="label">Site web</div>
+          <div class="value"><a href="https://www.proxybotpro.fr" target="_blank">www.proxybotpro.fr</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-block">
+      <h3>Nos services</h3>
+      <div class="service-tags">
+        <span class="service-tag">Chatbot WhatsApp IA</span>
+        <span class="service-tag">Création de site</span>
+        <span class="service-tag">Plateforme sur mesure</span>
+        <span class="service-tag">Bots bureau</span>
+        <span class="service-tag">Maintenance</span>
+        <span class="service-tag">SEO local</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-card">
+    <h2>Demande de devis gratuit</h2>
+    <p>Réponse garantie sous 48h · Aucun engagement</p>
+
+    <div id="formWrapper">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nom">Nom *</label>
+          <input type="text" id="nom" name="nom" placeholder="Votre nom" required/>
+        </div>
+        <div class="form-group">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Votre prénom"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="entreprise">Nom de l'entreprise</label>
+        <input type="text" id="entreprise" name="entreprise" placeholder="Votre entreprise / activité"/>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="votre@email.fr" required/>
+        </div>
+        <div class="form-group">
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" placeholder="06 xx xx xx xx"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="service">Service souhaité *</label>
+        <select id="service" name="service" required>
+          <option value="" disabled selected>Choisissez un service</option>
+          <option value="chatbot-whatsapp">Chatbot WhatsApp IA</option>
+          <option value="creation-site">Création de site web</option>
+          <option value="plateforme">Plateforme sur mesure</option>
+          <option value="bot-email">Bot répondeur email</option>
+          <option value="bot-reunions">Bot planificateur de réunions</option>
+          <option value="bot-documents">Bot base de connaissances</option>
+          <option value="suite-bureau">Suite bureau complète</option>
+          <option value="maintenance">Maintenance seule</option>
+          <option value="autre">Autre / Je ne sais pas encore</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Décrivez votre projet *</label>
+        <textarea id="message" name="message" placeholder="Décrivez votre activité, vos besoins, vos questions... Plus c'est détaillé, mieux on pourra vous aider !" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="budget">Budget envisagé</label>
+        <select id="budget" name="budget">
+          <option value="" disabled selected>Optionnel</option>
+          <option value="moins-300">Moins de 300 €</option>
+          <option value="300-600">300 € – 600 €</option>
+          <option value="600-1000">600 € – 1 000 €</option>
+          <option value="plus-1000">Plus de 1 000 €</option>
+          <option value="ne-sait-pas">Je ne sais pas encore</option>
+        </select>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+        Envoyer ma demande →
+      </button>
+      <p class="form-note">En soumettant ce formulaire, vous acceptez d'être recontacté par ProxyBot Pro concernant votre demande.</p>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-msg" id="successMsg">
+      <div class="check">✅</div>
+      <h3>Message envoyé !</h3>
+      <p>Merci pour votre demande. Nous vous répondrons à <strong id="successEmail"></strong> sous 48h maximum.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>ProxyBot Pro · 6 Route de Cheville Bel Air, 72350 Fontenay-sur-Vègre · <a href="mailto:contact@proxybotpro.fr">contact@proxybotpro.fr</a> · +33 9 56 37 27 64</p>
+  <p style="margin-top:0.4rem;">TVA non applicable art. 293B CGI · © 2026 ProxyBot Pro · SIRET 103 125 753 00014</p>
+</footer>
+
+<script>
+function handleSubmit() {
+  const nom = document.getElementById('nom').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const service = document.getElementById('service').value;
+  const message = document.getElementById('message').value.trim();
+
+  if (!nom || !email || !service || !message) {
+    alert('Merci de remplir les champs obligatoires (*).');
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Veuillez entrer une adresse email valide.');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+
+  const prenom = document.getElementById('prenom').value.trim();
+  const entreprise = document.getElementById('entreprise').value.trim();
+  const telephone = document.getElementById('telephone').value.trim();
+  const budget = document.getElementById('budget').value;
+
+  // Build mailto link and open email client as fallback
+  const subject = encodeURIComponent(`[ProxyBot Pro] Demande de devis — ${service}`);
+  const body = encodeURIComponent(
+`Nouvelle demande de contact via le site ProxyBot Pro
+=====================================================
+
+Nom : ${nom} ${prenom}
+Email : ${email}
+Téléphone : ${telephone || 'Non renseigné'}
+Entreprise : ${entreprise || 'Non renseignée'}
+
+Service souhaité : ${service}
+Budget envisagé : ${budget || 'Non renseigné'}
+
+Message :
+${message}
+
+-----
+Envoyé depuis le formulaire www.proxybotpro.fr/contact`
+  );
+
+  window.location.href = `mailto:contact@proxybotpro.fr?subject=${subject}&body=${body}`;
+
+  // Show success after short delay
+  setTimeout(() => {
+    document.getElementById('formWrapper').style.display = 'none';
+    const successEl = document.getElementById('successMsg');
+    successEl.style.display = 'block';
+    document.getElementById('successEmail').textContent = email;
+  }, 800);
+}
+
+// Allow Enter key to submit
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && e.ctrlKey) handleSubmit();
+});
+</script>
+
+</body>
+</html>

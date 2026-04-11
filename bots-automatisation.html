@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Bots & Automatisation – ProxyBot Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#060B18;--blue:#0057FF;--cyan:#00C8F0;--mint:#00FFB2;--white:#F0F4FF;--grey:#8A92A6;--purple:#7B5CF0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--white);font-family:'Poppins',sans-serif;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;background:rgba(6,11,24,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,240,0.1);}
+.logo{font-size:1.2rem;font-weight:800;color:var(--white);text-decoration:none;}
+.logo span{color:var(--cyan);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--grey);text-decoration:none;font-size:0.85rem;font-weight:600;transition:color .2s;}
+.nav-links a:hover{color:var(--mint);}
+.nav-cta{background:var(--blue);color:#fff;padding:0.55rem 1.4rem;border-radius:6px;text-decoration:none;font-size:0.85rem;font-weight:700;}
+.nav-cta:hover{background:var(--cyan);color:var(--navy);}
+
+.hero{padding:9rem 2.5rem 4rem;text-align:center;position:relative;}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(123,92,240,0.15) 0%,transparent 70%);pointer-events:none;}
+.badge{display:inline-block;background:rgba(123,92,240,0.15);border:1px solid rgba(123,92,240,0.4);color:#A78BFA;font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:2px;padding:0.4rem 1rem;border-radius:50px;margin-bottom:1.5rem;text-transform:uppercase;}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.1;margin-bottom:1.2rem;}
+.hero h1 span{background:linear-gradient(90deg,#A78BFA,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{color:var(--grey);font-size:1.05rem;max-width:640px;margin:0 auto 2rem;}
+
+/* INTRO BOX */
+.intro{max-width:900px;margin:0 auto;padding:0 2.5rem 4rem;}
+.intro-box{background:linear-gradient(135deg,rgba(123,92,240,0.1),rgba(0,87,255,0.1));border:1px solid rgba(123,92,240,0.2);border-radius:16px;padding:2.5rem;text-align:center;}
+.intro-box h2{font-size:1.5rem;font-weight:800;margin-bottom:1rem;}
+.intro-box p{color:var(--grey);font-size:0.95rem;line-height:1.8;max-width:700px;margin:0 auto;}
+
+/* BOT CARDS */
+.bots{padding:1rem 2.5rem 5rem;max-width:1200px;margin:0 auto;}
+.section-title{text-align:center;margin-bottom:3rem;}
+.section-title h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:0.5rem;}
+.section-title p{color:var(--grey);font-size:0.95rem;}
+.bots-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem;}
+.bot-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:2rem;transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden;}
+.bot-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(123,92,240,0.15);}
+.bot-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.bot-card.email::before{background:linear-gradient(90deg,var(--blue),#6366F1);}
+.bot-card.meeting::before{background:linear-gradient(90deg,#6366F1,var(--purple));}
+.bot-card.document::before{background:linear-gradient(90deg,var(--purple),var(--cyan));}
+.bot-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem;}
+.bot-card.email .bot-icon{background:rgba(0,87,255,0.15);border:1px solid rgba(0,87,255,0.3);}
+.bot-card.meeting .bot-icon{background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);}
+.bot-card.document .bot-icon{background:rgba(123,92,240,0.15);border:1px solid rgba(123,92,240,0.3);}
+.bot-tag{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:0.5rem;}
+.bot-card h3{font-size:1.2rem;font-weight:800;margin-bottom:0.5rem;}
+.bot-card .desc{color:var(--grey);font-size:0.86rem;line-height:1.6;margin-bottom:1.5rem;}
+.price-row{display:flex;align-items:flex-end;gap:1.5rem;margin-bottom:1.5rem;}
+.price-block{display:flex;flex-direction:column;}
+.price-label{font-size:0.65rem;color:var(--grey);letter-spacing:1px;text-transform:uppercase;margin-bottom:0.2rem;}
+.price-main{font-size:1.8rem;font-weight:900;color:var(--white);}
+.price-main small{font-size:0.8rem;font-weight:600;color:var(--grey);}
+.price-monthly{font-size:1.2rem;font-weight:800;color:var(--mint);}
+.features{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.features li{font-size:0.83rem;color:var(--grey);display:flex;align-items:center;gap:0.6rem;}
+.features li::before{content:'';width:6px;height:6px;border-radius:50%;background:#A78BFA;flex-shrink:0;}
+.features li.hi{color:var(--white);}
+.features li.hi::before{background:var(--mint);}
+
+/* SUITE CARD */
+.suite{max-width:1200px;margin:0 auto;padding:0 2.5rem 5rem;}
+.suite-card{background:linear-gradient(135deg,rgba(123,92,240,0.15),rgba(0,200,240,0.1));border:1px solid rgba(123,92,240,0.3);border-radius:16px;padding:2.5rem;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;}
+.suite-card h3{font-size:1.5rem;font-weight:900;margin-bottom:0.5rem;}
+.suite-card p{color:var(--grey);font-size:0.9rem;line-height:1.7;max-width:500px;}
+.suite-price{text-align:center;}
+.suite-price .from{font-size:0.75rem;color:var(--grey);letter-spacing:1px;text-transform:uppercase;margin-bottom:0.3rem;}
+.suite-price .amount{font-size:2.5rem;font-weight:900;}
+.suite-price .amount span{font-size:0.9rem;color:var(--grey);}
+.suite-price .monthly{font-size:1.3rem;font-weight:800;color:var(--mint);margin-top:0.2rem;}
+.suite-price .saving{font-size:0.78rem;background:rgba(0,255,178,0.1);border:1px solid rgba(0,255,178,0.3);color:var(--mint);padding:0.3rem 0.8rem;border-radius:50px;display:inline-block;margin-top:0.6rem;}
+
+/* HOW IT WORKS */
+.how{max-width:1000px;margin:0 auto;padding:0 2.5rem 5rem;}
+.how h2{text-align:center;font-size:1.8rem;font-weight:800;margin-bottom:2.5rem;}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;}
+.step{text-align:center;padding:1.5rem;}
+.step-num{width:44px;height:44px;border-radius:12px;background:rgba(0,87,255,0.15);border:1px solid rgba(0,87,255,0.3);color:var(--cyan);font-family:'Space Mono',monospace;font-weight:700;font-size:0.9rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.step h4{font-size:0.95rem;font-weight:700;margin-bottom:0.4rem;}
+.step p{font-size:0.82rem;color:var(--grey);line-height:1.5;}
+
+/* CTA */
+.cta-section{text-align:center;padding:4rem 2.5rem 6rem;}
+.btn-primary{display:inline-block;background:linear-gradient(135deg,var(--purple),var(--cyan));color:var(--white);font-weight:800;font-size:1rem;padding:1rem 2.5rem;border-radius:8px;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(123,92,240,0.4);}
+.btn-secondary{display:inline-block;border:1px solid rgba(0,200,240,0.4);color:var(--cyan);font-weight:700;font-size:1rem;padding:1rem 2.5rem;border-radius:8px;text-decoration:none;margin-left:1rem;transition:all .2s;}
+.btn-secondary:hover{background:rgba(0,200,240,0.1);}
+footer{border-top:1px solid rgba(255,255,255,0.06);padding:2rem 2.5rem;text-align:center;color:var(--grey);font-size:0.8rem;}
+footer a{color:var(--grey);text-decoration:none;}
+@media(max-width:768px){nav{padding:1rem 1.2rem;}.nav-links{display:none;}.bots,.suite,.how,.intro{padding-left:1.2rem;padding-right:1.2rem;}.suite-card{grid-template-columns:1fr;}.suite-price{text-align:left;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Proxy<span>Bot</span> Pro</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="creation-site.html">Création Site</a></li>
+    <li><a href="creation-plateforme.html">Plateformes</a></li>
+    <li><a href="bots-automatisation.html" style="color:#A78BFA">Bots & IA</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Devis gratuit</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">/ bots & automatisation /</div>
+  <h1>Automatisez vos tâches<br/><span>avec l'intelligence artificielle</span></h1>
+  <p>Emails, réunions, documents — nos bots IA prennent en charge les tâches répétitives de votre bureau pour que vous puissiez vous concentrer sur l'essentiel.</p>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-box">
+    <h2>🤖 Qu'est-ce qu'un bot bureau ?</h2>
+    <p>Un bot bureau est un assistant intelligent qui automatise des tâches récurrentes dans votre entreprise : répondre aux emails, planifier des réunions, traiter des documents ou gérer une base de connaissances interne. Développé sur mesure pour votre activité, il fonctionne 24h/24 sans intervention humaine — et apprend à mieux vous assister au fil du temps.</p>
+  </div>
+</section>
+
+<!-- BOT CARDS -->
+<section class="bots">
+  <div class="section-title">
+    <h2>Nos bots <span style="color:#A78BFA">pour votre bureau</span></h2>
+    <p>Chaque bot est développé sur mesure et livré clé en main · TVA non applicable art. 293B CGI</p>
+  </div>
+
+  <div class="bots-grid">
+
+    <!-- EMAIL BOT -->
+    <div class="bot-card email">
+      <div class="bot-icon">📧</div>
+      <div class="bot-tag">Bot 01</div>
+      <h3>Bot Répondeur Email</h3>
+      <p class="desc">Répond automatiquement à vos emails entrants selon des règles définies. Classifie, priorise et envoie des réponses personnalisées à vos clients sans que vous ayez à intervenir.</p>
+      <div class="price-row">
+        <div class="price-block">
+          <span class="price-label">Setup</span>
+          <span class="price-main">199 €<small> une fois</small></span>
+        </div>
+        <div class="price-block">
+          <span class="price-label">Mensuel</span>
+          <span class="price-monthly">29 € / mois</span>
+        </div>
+      </div>
+      <ul class="features">
+        <li class="hi">Réponses automatiques 24h/24</li>
+        <li>Classification des emails</li>
+        <li>Réponses personnalisées par type</li>
+        <li>Transfert des urgences vers vous</li>
+        <li>Intégration Gmail / Outlook</li>
+        <li>Rapport mensuel des échanges</li>
+      </ul>
+    </div>
+
+    <!-- MEETING BOT -->
+    <div class="bot-card meeting">
+      <div class="bot-icon">📆</div>
+      <div class="bot-tag">Bot 02</div>
+      <h3>Bot Planificateur de Réunions</h3>
+      <p class="desc">Gère vos demandes de réunions automatiquement : propose des créneaux disponibles, confirme les rendez-vous, envoie les rappels et génère les liens de visioconférence.</p>
+      <div class="price-row">
+        <div class="price-block">
+          <span class="price-label">Setup</span>
+          <span class="price-main">249 €<small> une fois</small></span>
+        </div>
+        <div class="price-block">
+          <span class="price-label">Mensuel</span>
+          <span class="price-monthly">29 € / mois</span>
+        </div>
+      </div>
+      <ul class="features">
+        <li class="hi">Synchronisation agenda Google / Outlook</li>
+        <li>Proposition de créneaux automatique</li>
+        <li>Confirmations + rappels SMS/email</li>
+        <li>Génération de liens Meet / Teams / Zoom</li>
+        <li>Gestion des annulations</li>
+        <li>Rapport mensuel</li>
+      </ul>
+    </div>
+
+    <!-- DOCUMENT BOT -->
+    <div class="bot-card document">
+      <div class="bot-icon">📁</div>
+      <div class="bot-tag">Bot 03</div>
+      <h3>Bot Base de Connaissances</h3>
+      <p class="desc">Un assistant interne qui répond aux questions de votre équipe à partir de vos documents, procédures et FAQ. Idéal pour l'onboarding, le support interne et la gestion documentaire.</p>
+      <div class="price-row">
+        <div class="price-block">
+          <span class="price-label">Setup</span>
+          <span class="price-main">299 €<small> une fois</small></span>
+        </div>
+        <div class="price-block">
+          <span class="price-label">Mensuel</span>
+          <span class="price-monthly">39 € / mois</span>
+        </div>
+      </div>
+      <ul class="features">
+        <li class="hi">Répond à partir de VOS documents</li>
+        <li>Intégration Google Drive / Notion</li>
+        <li>Recherche intelligente dans vos fichiers</li>
+        <li>Idéal onboarding & RH</li>
+        <li>Interface de chat interne</li>
+        <li>Mise à jour base documentaire auto</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SUITE -->
+<section class="suite">
+  <div class="suite-card">
+    <div>
+      <h3>🎯 Suite Bureau Complète</h3>
+      <p>Les 3 bots déployés ensemble, connectés entre eux et optimisés pour votre flux de travail. La solution idéale pour les PME qui veulent digitaliser leur bureau en une seule fois. Économisez 148 € sur le setup.</p>
+      <ul class="features" style="margin-top:1.2rem;">
+        <li class="hi">Bot Email + Bot Réunions + Bot Documents</li>
+        <li class="hi">Connexion entre les 3 bots</li>
+        <li>Dashboard de supervision unique</li>
+        <li>Formation de votre équipe incluse</li>
+        <li>Support dédié 24-48h</li>
+      </ul>
+    </div>
+    <div class="suite-price">
+      <div class="from">Setup</div>
+      <div class="amount">599 €<span> une fois</span></div>
+      <div class="monthly">89 € / mois</div>
+      <div class="saving">Économie de 148 € sur le setup</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <h2>Comment ça <span style="color:var(--cyan)">fonctionne</span> ?</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Analyse de vos besoins</h4>
+      <p>On étudie vos flux actuels et on identifie les tâches à automatiser en priorité.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Développement sur mesure</h4>
+      <p>Le bot est configuré et entraîné spécifiquement pour votre activité et vos outils.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Déploiement & formation</h4>
+      <p>Mise en production, test, et formation de votre équipe à l'outil livré.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>Suivi mensuel</h4>
+      <p>Rapport d'activité, ajustements et mises à jour incluses dans la maintenance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 style="font-size:1.8rem;font-weight:800;margin-bottom:0.8rem;">Prêt à automatiser votre bureau ?</h2>
+  <p style="color:var(--grey);margin-bottom:2rem;">Décrivez vos tâches répétitives — on vous dit en 48h ce qu'un bot peut automatiser.</p>
+  <a href="contact.html" class="btn-primary">Demander une analyse gratuite</a>
+  <a href="creation-plateforme.html" class="btn-secondary">Voir les plateformes</a>
+</section>
+
+<footer>
+  <p>ProxyBot Pro · 6 Route de Cheville Bel Air, 72350 Fontenay-sur-Vègre · <a href="mailto:contact@proxybotpro.fr">contact@proxybotpro.fr</a> · +33 9 56 37 27 64</p>
+  <p style="margin-top:0.4rem;">TVA non applicable art. 293B CGI · © 2026 ProxyBot Pro</p>
+</footer>
+
+</body>
+</html>
