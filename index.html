@@ -22,33 +22,42 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-he
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulseRing{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.6);opacity:0}}
 @keyframes typing{0%,100%{opacity:.3}50%{opacity:1}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes gridMove{from{background-position:0 0}to{background-position:40px 40px}}
 @keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
 .fade-up{opacity:1;animation:fadeUp .7s ease forwards}
 .d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}
 
 /* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 40px;
-  background:rgba(8,11,18,.85);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(8,11,18,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-size:1.2rem;font-weight:800;color:var(--text);text-decoration:none}
 .nav-logo-icon{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;font-size:1.1rem}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-link{color:var(--muted);font-size:.88rem;font-weight:500;text-decoration:none;transition:color .2s}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-link{color:var(--muted);font-size:.85rem;font-weight:500;text-decoration:none;transition:color .2s}
 .nav-link:hover{color:var(--text)}
+.nav-dropdown{position:relative}
+.nav-dropdown-toggle{color:var(--muted);font-size:.85rem;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:5px;transition:color .2s;background:none;border:none;font-family:var(--font-body);padding:0}
+.nav-dropdown-toggle:hover{color:var(--text)}
+.nav-dropdown-toggle svg{transition:transform .2s}
+.nav-dropdown:hover .nav-dropdown-toggle svg{transform:rotate(180deg)}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#0e1320;border:1px solid var(--border);border-radius:12px;padding:8px;min-width:220px;opacity:0;visibility:hidden;transition:all .2s;box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible}
+.nav-dropdown-menu a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:.84rem;font-weight:500;transition:all .2s}
+.nav-dropdown-menu a:hover{background:rgba(37,211,102,.08);color:var(--text)}
+.menu-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem;background:rgba(37,211,102,.1);flex-shrink:0}
 .nav-cta{background:var(--green);color:#000;font-weight:700;font-size:.85rem;padding:9px 20px;border-radius:8px;text-decoration:none;transition:opacity .2s}
 .nav-cta:hover{opacity:.88}
-@media(max-width:640px){.nav-links .nav-link{display:none}.nav{padding:14px 20px}}
+.mobile-menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:8px;padding:7px 10px;cursor:pointer;color:var(--text);font-size:1.1rem}
+.mobile-menu{display:none;position:fixed;top:65px;left:0;right:0;background:rgba(8,11,18,.98);border-bottom:1px solid var(--border);padding:16px 20px;z-index:99;flex-direction:column;gap:6px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--muted);font-size:.9rem;font-weight:500;text-decoration:none;padding:10px 14px;border-radius:8px;display:flex;align-items:center;gap:10px;transition:all .2s}
+.mobile-menu a:hover{background:rgba(37,211,102,.08);color:var(--text)}
+.mobile-divider{height:1px;background:var(--border);margin:6px 0}
+@media(max-width:900px){.nav-links{display:none}.mobile-menu-btn{display:block}}
+@media(max-width:600px){nav{padding:14px 20px}.cta-box{padding:40px 24px}footer{padding:28px 20px}}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
@@ -71,13 +80,24 @@ nav{
 .stat-num{font-family:var(--font-head);font-size:1.55rem;font-weight:800;color:var(--green)}
 .stat-label{font-size:.76rem;color:var(--muted);margin-top:2px}
 
+/* SERVICES STRIP */
+.services-strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0 24px}
+.services-strip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+.service-strip-item{display:flex;align-items:center;gap:14px;padding:22px 24px;border-right:1px solid var(--border);text-decoration:none;transition:background .2s}
+.service-strip-item:last-child{border-right:none}
+.service-strip-item:hover{background:rgba(37,211,102,.05)}
+.service-strip-icon{width:42px;height:42px;border-radius:10px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.service-strip-text h4{font-family:var(--font-head);font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:2px}
+.service-strip-text p{font-size:.76rem;color:var(--muted)}
+.service-strip-arrow{margin-left:auto;color:var(--muted);font-size:.9rem;transition:transform .2s,color .2s}
+.service-strip-item:hover .service-strip-arrow{transform:translateX(4px);color:var(--green)}
+@media(max-width:720px){.services-strip-inner{grid-template-columns:1fr}.service-strip-item{border-right:none;border-bottom:1px solid var(--border)}.service-strip-item:last-child{border-bottom:none}}
+
 /* SECTIONS */
 .section{padding:100px 24px;max-width:1200px;margin:0 auto}
 .section-label{font-size:.77rem;font-weight:600;letter-spacing:.1em;color:var(--green);text-transform:uppercase;margin-bottom:14px}
 .section-title{font-family:var(--font-head);font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;line-height:1.1;letter-spacing:-.025em;margin-bottom:16px}
 .section-sub{color:var(--muted);font-size:1.02rem;max-width:520px}
-
-/* DEMO GRID */
 .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
 @media(max-width:820px){.demo-grid{grid-template-columns:1fr}}
 .demo-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 40px rgba(0,0,0,.4);transition:box-shadow .3s}
@@ -93,8 +113,7 @@ nav{
 .chat-window::-webkit-scrollbar{width:3px}
 .chat-window::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:2px}
 .msg{display:flex;flex-direction:column;max-width:84%;animation:msgIn .25s ease}
-.msg-bot{align-self:flex-start}
-.msg-user{align-self:flex-end}
+.msg-bot{align-self:flex-start}.msg-user{align-self:flex-end}
 .bubble{padding:10px 14px;border-radius:12px;font-size:.86rem;line-height:1.55}
 .bubble-bot{background:#1a2b3c;color:var(--text);border-bottom-left-radius:3px}
 .bubble-user{background:#005c4b;color:var(--text);border-bottom-right-radius:3px}
@@ -107,17 +126,12 @@ nav{
 .dot:nth-child(3){animation:typing .9s .4s ease infinite}
 .quick-replies{display:flex;flex-wrap:wrap;gap:7px;padding:10px 12px 4px;background:#141f2e}
 .qr{background:transparent;border:1px solid rgba(37,211,102,.28);color:var(--green);font-size:.75rem;font-weight:500;padding:5px 12px;border-radius:100px;cursor:pointer;transition:all .15s;font-family:var(--font-body)}
-.qr:hover{background:rgba(37,211,102,.1)}
-.qr:disabled{opacity:.35;cursor:not-allowed}
+.qr:hover{background:rgba(37,211,102,.1)}.qr:disabled{opacity:.35;cursor:not-allowed}
 .chat-input-bar{display:flex;align-items:center;gap:10px;padding:12px;background:#141f2e;border-top:1px solid var(--border)}
 .chat-input{flex:1;background:#0b1520;color:var(--text);border:1px solid var(--border);border-radius:24px;padding:10px 16px;font-size:.87rem;font-family:var(--font-body);outline:none;transition:border-color .2s}
-.chat-input:focus{border-color:var(--green)}
-.chat-input::placeholder{color:var(--muted)}
+.chat-input:focus{border-color:var(--green)}.chat-input::placeholder{color:var(--muted)}
 .chat-send{width:40px;height:40px;border-radius:50%;background:var(--green);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#000;transition:opacity .2s;flex-shrink:0}
-.chat-send:hover{opacity:.85}
-.chat-send:disabled{opacity:.35;cursor:not-allowed}
-
-/* FEATURES */
+.chat-send:hover{opacity:.85}.chat-send:disabled{opacity:.35;cursor:not-allowed}
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
 @media(max-width:720px){.features-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:440px){.features-grid{grid-template-columns:1fr}}
@@ -126,8 +140,6 @@ nav{
 .feature-icon{width:46px;height:46px;border-radius:12px;background:rgba(37,211,102,.1);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:16px}
 .feature-title{font-family:var(--font-head);font-weight:700;font-size:.97rem;margin-bottom:8px}
 .feature-desc{color:var(--muted);font-size:.855rem;line-height:1.6}
-
-/* PRICING */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px;align-items:start}
 @media(max-width:720px){.pricing-grid{grid-template-columns:1fr;max-width:400px}}
 .price-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px 26px;position:relative;transition:transform .25s}
@@ -146,8 +158,6 @@ nav{
 .price-btn-outline:hover{border-color:var(--green);color:var(--green);background:rgba(37,211,102,.05)}
 .price-btn-solid{background:var(--green);color:#000;border:none}
 .price-btn-solid:hover{opacity:.88;box-shadow:0 8px 24px rgba(37,211,102,.28)}
-
-/* CTA */
 .cta-section{padding:80px 24px 100px;position:relative;overflow:hidden}
 .cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(37,211,102,.06) 0%,transparent 70%)}
 .cta-box{position:relative;max-width:660px;margin:0 auto;background:var(--card);border:1px solid rgba(37,211,102,.18);border-radius:24px;padding:60px 44px;text-align:center;box-shadow:0 0 80px rgba(37,211,102,.05)}
@@ -157,21 +167,22 @@ nav{
 .wa-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(37,211,102,.38)}
 
 /* FOOTER */
-footer{border-top:1px solid var(--border);padding:36px 40px 28px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:.8rem;flex-wrap:wrap;gap:14px}
+footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--muted);font-size:.8rem}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px}
+.footer-brand p{font-size:.82rem;color:var(--muted);line-height:1.6;max-width:240px;margin:10px 0}
+.footer-col h4{font-family:var(--font-head);font-size:.8rem;font-weight:700;color:var(--text);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:.82rem;margin-bottom:8px;transition:color .2s}
+.footer-col a:hover{color:var(--green)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid var(--border);flex-wrap:wrap;gap:10px}
 .footer-links{display:flex;gap:22px}
 .footer-links a{color:var(--muted);text-decoration:none;transition:color .2s}
 .footer-links a:hover{color:var(--text)}
+@media(max-width:720px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.footer-top{grid-template-columns:1fr}.footer-bottom{flex-direction:column;align-items:flex-start}}
 
-/* FLOATING WA */
 .float-wa-ring{position:fixed;bottom:26px;right:26px;z-index:199;width:54px;height:54px;border-radius:50%;border:2px solid var(--green);pointer-events:none;animation:pulseRing 2.2s ease-out infinite}
 .float-wa{position:fixed;bottom:26px;right:26px;z-index:200;width:54px;height:54px;border-radius:50%;background:var(--green);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);animation:float 3s ease-in-out infinite;text-decoration:none;transition:transform .2s}
 .float-wa:hover{transform:scale(1.1) !important}
-
-@media(max-width:600px){
-  nav{padding:14px 20px}
-  .cta-box{padding:40px 24px}
-  footer{padding:28px 20px;flex-direction:column;align-items:flex-start}
-}
 </style>
 </head>
 <body>
@@ -185,10 +196,32 @@ footer{border-top:1px solid var(--border);padding:36px 40px 28px;display:flex;al
   <div class="nav-links">
     <a href="#demos" class="nav-link">Démos</a>
     <a href="#features" class="nav-link">Fonctionnalités</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-toggle">Services <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="nav-dropdown-menu">
+        <a href="creation-site.html"><div class="menu-icon">🌐</div>Création de Site Web</a>
+        <a href="creation-plateforme.html"><div class="menu-icon">📅</div>Création de Plateforme</a>
+        <a href="bots-automatisation.html"><div class="menu-icon">🤖</div>Bots & Automatisation</a>
+      </div>
+    </div>
     <a href="#pricing" class="nav-link">Tarifs</a>
-    <a href="#contact" class="nav-cta">Démarrer →</a>
+    <a href="contact.html" class="nav-cta">Démarrer →</a>
   </div>
+  <button class="mobile-menu-btn" onclick="toggleMenu()" id="menuBtn">☰</button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#demos" onclick="closeMenu()">💬 Démos live</a>
+  <a href="#features" onclick="closeMenu()">✦ Fonctionnalités</a>
+  <div class="mobile-divider"></div>
+  <a href="creation-site.html">🌐 Création de Site Web</a>
+  <a href="creation-plateforme.html">📅 Création de Plateforme</a>
+  <a href="bots-automatisation.html">🤖 Bots & Automatisation</a>
+  <div class="mobile-divider"></div>
+  <a href="#pricing" onclick="closeMenu()">💳 Tarifs Chatbot</a>
+  <a href="contact.html" style="color:var(--green);font-weight:700">→ Devis gratuit</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -209,14 +242,33 @@ footer{border-top:1px solid var(--border);padding:36px 40px 28px;display:flex;al
   </div>
 </div>
 
+<!-- SERVICES STRIP -->
+<div class="services-strip">
+  <div class="services-strip-inner">
+    <a href="creation-site.html" class="service-strip-item">
+      <div class="service-strip-icon">🌐</div>
+      <div class="service-strip-text"><h4>Création de Site Web</h4><p>Vitrine, e-commerce, maintenance</p></div>
+      <span class="service-strip-arrow">→</span>
+    </a>
+    <a href="creation-plateforme.html" class="service-strip-item">
+      <div class="service-strip-icon">📅</div>
+      <div class="service-strip-text"><h4>Plateforme sur Mesure</h4><p>Réservation, espace client, portail</p></div>
+      <span class="service-strip-arrow">→</span>
+    </a>
+    <a href="bots-automatisation.html" class="service-strip-item">
+      <div class="service-strip-icon">🤖</div>
+      <div class="service-strip-text"><h4>Bots & Automatisation</h4><p>Email, réunions, base de connaissances</p></div>
+      <span class="service-strip-arrow">→</span>
+    </a>
+  </div>
+</div>
+
 <!-- DEMOS -->
 <section class="section" id="demos">
   <p class="section-label">🔴 Démos live</p>
   <h2 class="section-title">Testez par vous-même,<br/>maintenant</h2>
   <p class="section-sub">Ces chatbots sont alimentés par une vraie IA. Posez n'importe quelle question — ils répondent comme le ferait un vrai assistant de votre établissement.</p>
   <div class="demo-grid">
-
-    <!-- RESTAURANT -->
     <div class="demo-card">
       <div class="demo-label"><span class="demo-type-badge">Restaurant</span><span>Démo interactive en direct</span></div>
       <div class="chat-header">
@@ -238,8 +290,6 @@ footer{border-top:1px solid var(--border);padding:36px 40px 28px;display:flex;al
         </button>
       </div>
     </div>
-
-    <!-- SANTÉ -->
     <div class="demo-card">
       <div class="demo-label"><span class="demo-type-badge">Maison de Santé</span><span>Démo interactive en direct</span></div>
       <div class="chat-header">
@@ -261,7 +311,6 @@ footer{border-top:1px solid var(--border);padding:36px 40px 28px;display:flex;al
         </button>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -338,20 +387,17 @@ footer{border-top:1px solid var(--border);padding:36px 40px 28px;display:flex;al
     <p class="section-label" style="text-align:center">📲 Contact</p>
     <h2 class="cta-title">Prêt à automatiser<br/>votre accueil client ?</h2>
     <p class="cta-sub">Obtenez votre chatbot personnalisé en 48h.<br/>Démo gratuite, sans engagement.</p>
-
     <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
       <input id="cf-name" type="text" placeholder="Votre nom et prénom *" style="background:#0e1320;border:1px solid #1e2a3a;border-radius:10px;padding:14px 18px;color:#e8edf5;font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;width:100%;transition:border-color .2s" onfocus="this.style.borderColor='#25D366'" onblur="this.style.borderColor='#1e2a3a'"/>
       <input id="cf-business" type="text" placeholder="Nom de votre établissement *" style="background:#0e1320;border:1px solid #1e2a3a;border-radius:10px;padding:14px 18px;color:#e8edf5;font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;width:100%;transition:border-color .2s" onfocus="this.style.borderColor='#25D366'" onblur="this.style.borderColor='#1e2a3a'"/>
       <input id="cf-phone" type="tel" placeholder="Votre téléphone *" style="background:#0e1320;border:1px solid #1e2a3a;border-radius:10px;padding:14px 18px;color:#e8edf5;font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;width:100%;transition:border-color .2s" onfocus="this.style.borderColor='#25D366'" onblur="this.style.borderColor='#1e2a3a'"/>
       <input id="cf-email" type="email" placeholder="Votre email" style="background:#0e1320;border:1px solid #1e2a3a;border-radius:10px;padding:14px 18px;color:#e8edf5;font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;width:100%;transition:border-color .2s" onfocus="this.style.borderColor='#25D366'" onblur="this.style.borderColor='#1e2a3a'"/>
     </div>
-
     <button onclick="submitContact()" class="wa-btn" style="width:100%;justify-content:center;border:none;cursor:pointer">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
       Demander ma démo gratuite
     </button>
     <div id="cf-msg" style="margin-top:14px;font-size:.82rem;min-height:20px"></div>
-
     <div style="margin-top:28px;padding-top:20px;border-top:1px solid #1e2a3a;display:flex;flex-direction:column;gap:8px;align-items:center">
       <p style="font-size:.82rem;color:#5b6e85">Ou contactez-nous directement :</p>
       <a href="tel:+33956372764" style="color:#25D366;font-weight:700;font-size:.95rem;text-decoration:none">📞 09 56 37 27 64</a>
@@ -362,136 +408,68 @@ footer{border-top:1px solid var(--border);padding:36px 40px 28px;display:flex;al
 
 <!-- FOOTER -->
 <footer>
-  <div style="display:flex;align-items:center;gap:10px">
-    <div class="nav-logo-icon" style="width:28px;height:28px;font-size:.85rem">💬</div>
-    <span style="font-family:var(--font-head);font-weight:700">ProxyBot<span style="color:var(--green)">Pro</span></span>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="display:inline-flex;margin-bottom:10px">
+        <div class="nav-logo-icon" style="width:28px;height:28px;font-size:.85rem">💬</div>
+        <span style="font-family:var(--font-head);font-weight:700">ProxyBot<span style="color:var(--green)">Pro</span></span>
+      </a>
+      <p>Solutions IA pour les professionnels français. Chatbots, sites web, plateformes et automatisation — livrés clé en main.</p>
+      <span>📍 Fontenay-sur-Vègre, Sarthe (72)</span>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="creation-site.html">Création de Site Web</a>
+      <a href="creation-plateforme.html">Plateformes sur Mesure</a>
+      <a href="bots-automatisation.html">Bots & Automatisation</a>
+      <a href="#pricing">Chatbot WhatsApp IA</a>
+    </div>
+    <div class="footer-col">
+      <h4>Entreprise</h4>
+      <a href="#demos">Démos live</a>
+      <a href="#features">Fonctionnalités</a>
+      <a href="contact.html">Devis gratuit</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:contact@proxybotpro.fr">✉️ contact@proxybotpro.fr</a>
+      <a href="tel:+33956372764">📞 09 56 37 27 64</a>
+      <a href="https://www.linkedin.com/in/proxybot-pro-219475400" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/PROXYBOTPROFR" target="_blank">Instagram</a>
+    </div>
   </div>
-  <span>© 2026 ProxyBot Pro · France</span>
-  <div class="footer-links">
-    <a href="#">CGV</a>
-    <a href="#">Mentions légales</a>
-    <a href="#">RGPD</a>
+  <div class="footer-bottom">
+    <span>© 2026 ProxyBot Pro · SIRET 103 125 753 00014 · France</span>
+    <div class="footer-links">
+      <a href="#">CGV</a>
+      <a href="#">Mentions légales</a>
+      <a href="#">RGPD</a>
+    </div>
   </div>
 </footer>
 
-<!-- FLOATING WA -->
 <div class="float-wa-ring"></div>
 <a href="https://wa.me/33956372764" target="_blank" class="float-wa" title="Nous contacter">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="#000"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-const BOTS = {
-  resto: {
-    welcome: "Bonjour ! 👋 Je suis l'assistant du restaurant **Le Savoir-Faire**. Je peux vous aider pour les réservations, notre carte, les horaires ou toute autre question. Comment puis-je vous aider ?",
-    system: `Tu es l'assistant IA du restaurant gastronomique français "Le Savoir-Faire". Tu réponds de façon chaleureuse, professionnelle et concise (3-4 phrases max) en français.
-
-INFOS DU RESTAURANT :
-- Nom : Le Savoir-Faire
-- Cuisine : Gastronomique française
-- Horaires : Mar-Dim 12h-14h30 / 19h-22h30. Fermé lundi.
-- Réservation : par téléphone 02 40 XX XX XX ou via cet assistant (prénom, nb de personnes, date, heure)
-- Carte : menus déjeuner à 29€ et 45€, menu dîner à 69€. Spécialités : foie gras maison, saint-jacques, filet de bœuf Wagyu, soufflé au Grand Marnier
-- Allergènes : prévenir à la réservation
-- Parking : gratuit à 100m (Place du Marché)
-- Capacité : 40 couverts en salle, 20 en terrasse (été)
-
-Sois toujours souriant(e), propose une question de suivi. N'invente pas d'informations non listées.`,
-    history: []
-  },
-  kine: {
-    welcome: "Bonjour ! 😊 Je suis l'assistant de la **Maison de Santé des Deux-Rives**. Je peux vous aider pour prendre rendez-vous, obtenir des informations pratiques ou répondre à vos questions. Comment puis-je vous aider ?",
-    system: `Tu es l'assistant IA de la Maison de Santé des Deux-Rives. Tu réponds de façon bienveillante, rassurante et concise (3-4 phrases max) en français.
-
-INFOS DE LA MAISON DE SANTÉ :
-- Nom : Maison de Santé des Deux-Rives
-- Adresse : 14 Rue de la Paix, Sablé-sur-Sarthe
-- Téléphone : 02 43 95 XX XX
-- Secteur 1 (sans dépassement d'honoraires)
-- Praticiens : médecins généralistes, infirmiers, kinésithérapeute, diététicienne
-- Horaires : Lun-Ven 8h-12h / 14h-19h. Sam 8h-12h. Fermé dimanche.
-- Prise en charge SS et mutuelles
-- Parking gratuit devant la maison de santé. Accessible PMR.
-- Urgences : composer le 15 (SAMU) ou 15
-
-Pour les RDV : collecter prénom/nom, motif, praticien souhaité, date souhaitée, téléphone.
-Rappelle toujours le 15 pour les urgences médicales.`,
-    history: []
-  }
+function toggleMenu(){const m=document.getElementById('mobileMenu');const b=document.getElementById('menuBtn');m.classList.toggle('open');b.textContent=m.classList.contains('open')?'✕':'☰';}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('menuBtn').textContent='☰';}
+const BOTS={
+  resto:{welcome:"Bonjour ! 👋 Je suis l'assistant du restaurant **Le Savoir-Faire**. Je peux vous aider pour les réservations, notre carte, les horaires ou toute autre question. Comment puis-je vous aider ?",system:`Tu es l'assistant IA du restaurant gastronomique français "Le Savoir-Faire". Tu réponds de façon chaleureuse, professionnelle et concise (3-4 phrases max) en français.\n\nINFOS DU RESTAURANT :\n- Nom : Le Savoir-Faire\n- Cuisine : Gastronomique française\n- Horaires : Mar-Dim 12h-14h30 / 19h-22h30. Fermé lundi.\n- Réservation : par téléphone 02 40 XX XX XX ou via cet assistant (prénom, nb de personnes, date, heure)\n- Carte : menus déjeuner à 29€ et 45€, menu dîner à 69€. Spécialités : foie gras maison, saint-jacques, filet de bœuf Wagyu, soufflé au Grand Marnier\n- Allergènes : prévenir à la réservation\n- Parking : gratuit à 100m (Place du Marché)\n- Capacité : 40 couverts en salle, 20 en terrasse (été)\n\nSois toujours souriant(e), propose une question de suivi. N'invente pas d'informations non listées.`,history:[]},
+  kine:{welcome:"Bonjour ! 😊 Je suis l'assistant de la **Maison de Santé des Deux-Rives**. Je peux vous aider pour prendre rendez-vous, obtenir des informations pratiques ou répondre à vos questions. Comment puis-je vous aider ?",system:`Tu es l'assistant IA de la Maison de Santé des Deux-Rives. Tu réponds de façon bienveillante, rassurante et concise (3-4 phrases max) en français.\n\nINFOS DE LA MAISON DE SANTÉ :\n- Nom : Maison de Santé des Deux-Rives\n- Adresse : 14 Rue de la Paix, Sablé-sur-Sarthe\n- Téléphone : 02 43 95 XX XX\n- Secteur 1 (sans dépassement d'honoraires)\n- Praticiens : médecins généralistes, infirmiers, kinésithérapeute, diététicienne\n- Horaires : Lun-Ven 8h-12h / 14h-19h. Sam 8h-12h. Fermé dimanche.\n- Prise en charge SS et mutuelles\n- Parking gratuit devant la maison de santé. Accessible PMR.\n- Urgences : composer le 15 (SAMU)\n\nPour les RDV : collecter prénom/nom, motif, praticien souhaité, date souhaitée, téléphone.\nRappelle toujours le 15 pour les urgences médicales.`,history:[]}
 };
-
 function getTime(){return new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}
 function escHtml(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function renderMd(t){return escHtml(t).replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br/>')}
-
-function setLoading(bot,on){
-  document.getElementById('input-'+bot).disabled=on;
-  document.getElementById('send-'+bot).disabled=on;
-  document.querySelectorAll('#qr-'+bot+' .qr').forEach(q=>q.disabled=on);
-}
-
-function appendMsg(bot,role,text){
-  const win=document.getElementById('chat-'+bot);
-  const d=document.createElement('div');
-  d.className='msg msg-'+(role==='bot'?'bot':'user');
-  d.innerHTML=`<div class="bubble bubble-${role==='bot'?'bot':'user'}">${renderMd(text)}</div><div class="msg-time">${getTime()}${role==='user'?' ✓✓':''}</div>`;
-  win.appendChild(d);
-  win.scrollTop=win.scrollHeight;
-}
-
-function showTyping(bot){
-  const win=document.getElementById('chat-'+bot);
-  const el=document.createElement('div');
-  el.className='typing-wrap';el.id='typing-'+bot;
-  el.innerHTML='<div class="typing-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
-  win.appendChild(el);win.scrollTop=win.scrollHeight;
-}
+function setLoading(bot,on){document.getElementById('input-'+bot).disabled=on;document.getElementById('send-'+bot).disabled=on;document.querySelectorAll('#qr-'+bot+' .qr').forEach(q=>q.disabled=on);}
+function appendMsg(bot,role,text){const win=document.getElementById('chat-'+bot);const d=document.createElement('div');d.className='msg msg-'+(role==='bot'?'bot':'user');d.innerHTML=`<div class="bubble bubble-${role==='bot'?'bot':'user'}">${renderMd(text)}</div><div class="msg-time">${getTime()}${role==='user'?' ✓✓':''}</div>`;win.appendChild(d);win.scrollTop=win.scrollHeight;}
+function showTyping(bot){const win=document.getElementById('chat-'+bot);const el=document.createElement('div');el.className='typing-wrap';el.id='typing-'+bot;el.innerHTML='<div class="typing-bubble"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';win.appendChild(el);win.scrollTop=win.scrollHeight;}
 function hideTyping(bot){const el=document.getElementById('typing-'+bot);if(el)el.remove()}
-
-async function sendMsg(bot,text){
-  text=text.trim();
-  if(!text)return;
-  document.getElementById('input-'+bot).value='';
-  appendMsg(bot,'user',text);
-  BOTS[bot].history.push({role:'user',content:text});
-  setLoading(bot,true);
-  showTyping(bot);
-  try{
-    const res=await fetch('/.netlify/functions/chat',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({system:BOTS[bot].system,messages:BOTS[bot].history})
-    });
-    const data=await res.json();
-    const reply=data?.content?.[0]?.text||'Désolé, je n\'ai pas pu répondre.';
-    BOTS[bot].history.push({role:'assistant',content:reply});
-    hideTyping(bot);
-    appendMsg(bot,'bot',reply);
-  }catch(e){
-    hideTyping(bot);
-    appendMsg(bot,'bot','⚠️ Erreur de connexion. Veuillez réessayer.');
-  }
-  setLoading(bot,false);
-}
-
-function openWA(plan){
-  window.open('https://wa.me/33956372764?text='+encodeURIComponent('Bonjour ProxyBot Pro, je suis intéressé(e) par le plan '+plan+' !'),'_blank');
-}
-
-function submitContact(){
-  const name=document.getElementById('cf-name').value.trim();
-  const business=document.getElementById('cf-business').value.trim();
-  const phone=document.getElementById('cf-phone').value.trim();
-  const email=document.getElementById('cf-email').value.trim();
-  const msg=document.getElementById('cf-msg');
-  if(!name||!business||!phone){msg.style.color='#ff6b6b';msg.textContent='⚠️ Merci de remplir les champs obligatoires (nom, établissement, téléphone).';return;}
-  const text=`Bonjour ProxyBot Pro, je souhaite une démo gratuite.\n\nNom : ${name}\nÉtablissement : ${business}\nTéléphone : ${phone}${email?'\nEmail : '+email:''}`;
-  window.open('https://wa.me/33956372764?text='+encodeURIComponent(text),'_blank');
-  msg.style.color='#25D366';
-  msg.textContent='✅ Merci ! Vous allez être redirigé vers WhatsApp pour finaliser votre demande.';
-}
-
-// Init welcome messages
+async function sendMsg(bot,text){text=text.trim();if(!text)return;document.getElementById('input-'+bot).value='';appendMsg(bot,'user',text);BOTS[bot].history.push({role:'user',content:text});setLoading(bot,true);showTyping(bot);try{const res=await fetch('/.netlify/functions/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:BOTS[bot].system,messages:BOTS[bot].history})});const data=await res.json();const reply=data?.content?.[0]?.text||'Désolé, je n\'ai pas pu répondre.';BOTS[bot].history.push({role:'assistant',content:reply});hideTyping(bot);appendMsg(bot,'bot',reply);}catch(e){hideTyping(bot);appendMsg(bot,'bot','⚠️ Erreur de connexion. Veuillez réessayer.');}setLoading(bot,false);}
+function submitContact(){const name=document.getElementById('cf-name').value.trim();const business=document.getElementById('cf-business').value.trim();const phone=document.getElementById('cf-phone').value.trim();const email=document.getElementById('cf-email').value.trim();const msg=document.getElementById('cf-msg');if(!name||!business||!phone){msg.style.color='#ff6b6b';msg.textContent='⚠️ Merci de remplir les champs obligatoires (nom, établissement, téléphone).';return;}const text=`Bonjour ProxyBot Pro, je souhaite une démo gratuite.\n\nNom : ${name}\nÉtablissement : ${business}\nTéléphone : ${phone}${email?'\nEmail : '+email:''}`;window.open('https://wa.me/33956372764?text='+encodeURIComponent(text),'_blank');msg.style.color='#25D366';msg.textContent='✅ Merci ! Vous allez être redirigé vers WhatsApp pour finaliser votre demande.';}
 appendMsg('resto','bot',BOTS.resto.welcome);
 appendMsg('kine','bot',BOTS.kine.welcome);
 </script>
