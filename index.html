@@ -472,6 +472,6 @@ async function sendMsg(bot,text){text=text.trim();if(!text)return;document.getEl
 function submitContact(){const name=document.getElementById('cf-name').value.trim();const business=document.getElementById('cf-business').value.trim();const phone=document.getElementById('cf-phone').value.trim();const email=document.getElementById('cf-email').value.trim();const msg=document.getElementById('cf-msg');if(!name||!business||!phone){msg.style.color='#ff6b6b';msg.textContent='⚠️ Merci de remplir les champs obligatoires (nom, établissement, téléphone).';return;}const text=`Bonjour ProxyBot Pro, je souhaite une démo gratuite.\n\nNom : ${name}\nÉtablissement : ${business}\nTéléphone : ${phone}${email?'\nEmail : '+email:''}`;window.open('https://wa.me/33956372764?text='+encodeURIComponent(text),'_blank');msg.style.color='#25D366';msg.textContent='✅ Merci ! Vous allez être redirigé vers WhatsApp pour finaliser votre demande.';}
 appendMsg('resto','bot',BOTS.resto.welcome);
 appendMsg('kine','bot',BOTS.kine.welcome);
-</script>
+</script src="https://proxybotpro.fr/widget.js"></script>
 </body>
 </html>
