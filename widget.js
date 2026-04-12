@@ -36,7 +36,7 @@ Si tu ne sais pas, propose de contacter l'équipe directement.`,
     #ppro-widget-root * { box-sizing:border-box; margin:0; padding:0; font-family:'Poppins',sans-serif; }
 
     #ppro-bubble {
-      position:fixed; bottom:24px; right:24px; width:62px; height:62px;
+      position:fixed; bottom:90px; right:24px; width:62px; height:62px;
       border-radius:50%; background:linear-gradient(135deg,${CONFIG.colors.blue},${CONFIG.colors.cyan});
       box-shadow:0 4px 24px rgba(0,87,255,0.45); cursor:pointer;
       display:flex; align-items:center; justify-content:center;
