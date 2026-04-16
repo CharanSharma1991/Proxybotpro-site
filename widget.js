@@ -114,14 +114,15 @@ INSTRUCTIONS IMPORTANTES :
     #ppro-messages::-webkit-scrollbar-thumb { background:rgba(0,200,240,.2); border-radius:4px; }
 
     .ppro-msg {
-      max-width:78%; padding:10px 14px; border-radius:16px;
-      font-size:13px; line-height:1.6; animation:ppro-fadeup .2s ease;
+      max-width:78%; padding:14px 16px; border-radius:16px;
+      font-size:13px; line-height:1.8; animation:ppro-fadeup .2s ease;
       word-wrap:break-word; overflow-wrap:break-word;
+      box-sizing:border-box;
     }
     .ppro-msg-bot {
       background:rgba(0,200,240,.09); border:1px solid rgba(0,200,240,.18);
       color:rgba(255,255,255,.92); align-self:flex-start; border-bottom-left-radius:4px;
-      width:100%; max-width:100%;
+      width:90%; max-width:90%; margin:4px 8px;
     }
     .ppro-msg-user {
       background:linear-gradient(135deg,${CONFIG.colors.blue},#0041CC);
