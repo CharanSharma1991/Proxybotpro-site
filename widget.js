@@ -5,7 +5,7 @@
   const CLIENT = window.PProConfig || {};
 
   const CONFIG = {
-    apiEndpoint:    CLIENT.apiEndpoint    || "/.netlify/functions/chat",
+    apiEndpoint: CLIENT.apiEndpoint || "https://chat.summer-recipe-25d9.workers.dev",
     brandName:      CLIENT.brandName      || "Assistant Virtuel",
     welcomeMessage: CLIENT.welcomeMessage || "Bonjour 👋 Comment puis-je vous aider ?",
     placeholder:    CLIENT.placeholder    || "Écrivez votre question...",
