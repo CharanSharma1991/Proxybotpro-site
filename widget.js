@@ -35,7 +35,9 @@ Règles de formatage :
 - Réponses courtes et claires, maximum 3-4 lignes par message
 - Une idée par ligne, bien espacée
 - Pas plus de 2 emojis par réponse
-- Pas de longs paragraphes`,
+- Pas de longs paragraphes
+- N'utilise jamais de symboles markdown comme **, *, ##, ou autres
+- Écris en texte simple et lisible`,
 
     // Fixed ProxyBot brand palette
     colors: {
