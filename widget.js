@@ -114,8 +114,9 @@ INSTRUCTIONS IMPORTANTES :
     #ppro-messages::-webkit-scrollbar-thumb { background:rgba(0,200,240,.2); border-radius:4px; }
 
     .ppro-msg {
-      max-width:84%; padding:10px 14px; border-radius:16px;
+      max-width:78%; padding:10px 14px; border-radius:16px;
       font-size:13px; line-height:1.6; animation:ppro-fadeup .2s ease;
+      word-wrap:break-word; overflow-wrap:break-word;
     }
     .ppro-msg-bot {
       background:rgba(0,200,240,.09); border:1px solid rgba(0,200,240,.18);
