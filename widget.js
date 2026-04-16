@@ -29,7 +29,13 @@ Tarifs :
 
 Contact : contact@proxybotpro.fr | +33 9 56 37 27 64 | www.proxybotpro.fr
 
-Réponds toujours en français, sois professionnel et chaleureux. Encourage les visiteurs à prendre rendez-vous pour une démo gratuite.`,
+Réponds toujours en français, sois professionnel et chaleureux.
+Encourage les visiteurs à prendre rendez-vous pour une démo gratuite.
+Règles de formatage :
+- Réponses courtes et claires, maximum 3-4 lignes par message
+- Une idée par ligne, bien espacée
+- Pas plus de 2 emojis par réponse
+- Pas de longs paragraphes`,
 
     // Fixed ProxyBot brand palette
     colors: {
