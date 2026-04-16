@@ -20,7 +20,7 @@ ProxyBot Pro propose :
 
 Tarifs :
 - Starter : 49 euros par mois — Chatbot IA WhatsApp 24h/24, idéal pour démarrer
-- Standard : 69 euros par mois — Chatbot + création de site web professionnel inclus
+- Standard : 69 euros par mois — Chatbot plus création de site web professionnel inclus
 - Premium : 99 euros par mois — Solution complète avec automatisation et maintenance
 
 Contact : contact@proxybotpro.fr | +33 9 56 37 27 64 | www.proxybotpro.fr
@@ -29,10 +29,10 @@ INSTRUCTIONS IMPORTANTES :
 - Réponds TOUJOURS en texte brut sans aucun formatage
 - N'utilise JAMAIS les symboles comme **, *, ##, -- ou tout autre markdown
 - Pour les listes utilise uniquement le symbole • au début de chaque ligne
-- Laisse une ligne vide entre chaque point de liste
-- Réponds en 4 lignes maximum par message
+- Chaque élément de liste doit être sur sa propre ligne séparée par un saut de ligne
+- Réponds en 5 lignes maximum par message
 - Maximum 1 emoji par réponse
-- Tutoie jamais le client, utilise toujours "vous"
+- Ne tutoie jamais le client, utilise toujours vous
 - Sois professionnel et chaleureux
 - Encourage les visiteurs à réserver une démo gratuite`,
 
@@ -53,7 +53,7 @@ INSTRUCTIONS IMPORTANTES :
 
     #ppro-bubble {
       position:fixed; bottom:90px; right:24px; width:62px; height:62px;
-      border-radius:50%; background:linear-gradient(135deg,${CONFIG.colors.blue},${CONFIG.colors.cyan});
+      border-radius:50%; background:linear-gradient(135deg,#0057FF,#00C8F0);
       box-shadow:0 4px 24px rgba(0,87,255,0.45); cursor:pointer;
       display:flex; align-items:center; justify-content:center;
       z-index:99998; transition:transform .2s,box-shadow .2s; border:none; outline:none;
@@ -61,7 +61,7 @@ INSTRUCTIONS IMPORTANTES :
     #ppro-bubble:hover { transform:scale(1.1); box-shadow:0 6px 30px rgba(0,200,240,.5); }
     #ppro-badge {
       position:absolute; top:-4px; right:-4px;
-      background:${CONFIG.colors.mint}; color:${CONFIG.colors.navy};
+      background:#00FFB2; color:#060B18;
       font-size:9px; font-weight:700; padding:2px 6px;
       border-radius:10px; letter-spacing:.5px; text-transform:uppercase; white-space:nowrap;
     }
@@ -69,7 +69,7 @@ INSTRUCTIONS IMPORTANTES :
       position:fixed; bottom:96px; right:24px;
       width:360px; max-width:calc(100vw - 32px);
       height:540px; max-height:calc(100vh - 120px);
-      background:${CONFIG.colors.navy}; border-radius:20px;
+      background:#060B18; border-radius:20px;
       box-shadow:0 16px 60px rgba(0,0,0,.5),0 0 0 1px rgba(0,200,240,.15);
       display:flex; flex-direction:column; overflow:hidden; z-index:99999;
       transform:scale(.85) translateY(20px); opacity:0; pointer-events:none;
@@ -79,23 +79,23 @@ INSTRUCTIONS IMPORTANTES :
     #ppro-window.ppro-open { transform:scale(1) translateY(0); opacity:1; pointer-events:all; }
 
     #ppro-header {
-      background:linear-gradient(135deg,${CONFIG.colors.blue},rgba(0,200,240,.12));
+      background:linear-gradient(135deg,#0057FF,rgba(0,200,240,.12));
       padding:16px 20px; display:flex; align-items:center; gap:12px;
       border-bottom:1px solid rgba(0,200,240,.15); flex-shrink:0;
     }
     #ppro-avatar {
       width:40px; height:40px; border-radius:50%;
-      background:linear-gradient(135deg,${CONFIG.colors.cyan},${CONFIG.colors.mint});
+      background:linear-gradient(135deg,#00C8F0,#00FFB2);
       display:flex; align-items:center; justify-content:center; flex-shrink:0;
     }
     #ppro-header-name { font-size:14px; font-weight:700; color:#fff; line-height:1.2; }
     #ppro-header-status {
-      font-size:11px; color:${CONFIG.colors.mint};
+      font-size:11px; color:#00FFB2;
       display:flex; align-items:center; gap:5px; margin-top:2px;
     }
     #ppro-header-status::before {
       content:''; width:6px; height:6px; border-radius:50%;
-      background:${CONFIG.colors.mint}; display:inline-block; animation:ppro-pulse 2s infinite;
+      background:#00FFB2; display:inline-block; animation:ppro-pulse 2s infinite;
     }
     #ppro-close {
       background:rgba(255,255,255,.1); border:none; border-radius:50%;
@@ -107,36 +107,47 @@ INSTRUCTIONS IMPORTANTES :
 
     #ppro-messages {
       flex:1; overflow-y:auto; padding:16px;
-      display:flex; flex-direction:column; gap:12px;
+      display:flex; flex-direction:column; gap:8px;
       scrollbar-width:thin; scrollbar-color:rgba(0,200,240,.2) transparent;
     }
     #ppro-messages::-webkit-scrollbar { width:4px; }
     #ppro-messages::-webkit-scrollbar-thumb { background:rgba(0,200,240,.2); border-radius:4px; }
 
     .ppro-msg {
-      max-width:78%; padding:14px 16px; border-radius:16px;
-      font-size:13px; line-height:1.8; animation:ppro-fadeup .2s ease;
-      word-wrap:break-word; overflow-wrap:break-word;
-      box-sizing:border-box;
+      max-width:90%;
+      font-size:13px;
+      line-height:1.7;
+      animation:ppro-fadeup .2s ease;
+      word-wrap:break-word;
+      overflow-wrap:break-word;
     }
     .ppro-msg-bot {
-      background:transparent; border:none;
-      color:rgba(255,255,255,.92); align-self:flex-start;
-      width:95%; max-width:95%; padding:4px 8px;
+      background:transparent;
+      border:none;
+      border-left:2px solid rgba(0,200,240,.4);
+      color:rgba(255,255,255,.92);
+      align-self:flex-start;
+      padding:4px 12px;
+      width:95%;
+      max-width:95%;
     }
     .ppro-msg-user {
-      background:linear-gradient(135deg,${CONFIG.colors.blue},#0041CC);
-      color:#fff; align-self:flex-end; border-bottom-right-radius:4px;
+      background:linear-gradient(135deg,#0057FF,#0041CC);
+      color:#fff;
+      align-self:flex-end;
+      padding:10px 14px;
+      border-radius:16px;
+      border-bottom-right-radius:4px;
     }
 
     #ppro-typing {
       display:none; align-self:flex-start;
-      background:rgba(0,200,240,.07); border:1px solid rgba(0,200,240,.15);
-      border-radius:16px; border-bottom-left-radius:4px; padding:12px 16px;
+      border-left:2px solid rgba(0,200,240,.4);
+      padding:8px 12px;
     }
     #ppro-typing.ppro-visible { display:flex; gap:5px; align-items:center; }
     .ppro-dot {
-      width:7px; height:7px; background:${CONFIG.colors.cyan}; border-radius:50%;
+      width:7px; height:7px; background:#00C8F0; border-radius:50%;
       animation:ppro-bounce 1.2s infinite;
     }
     .ppro-dot:nth-child(2){animation-delay:.2s} .ppro-dot:nth-child(3){animation-delay:.4s}
@@ -144,7 +155,7 @@ INSTRUCTIONS IMPORTANTES :
     #ppro-quick-replies { padding:0 16px 10px; display:flex; flex-wrap:wrap; gap:6px; flex-shrink:0; }
     .ppro-qr {
       background:transparent; border:1px solid rgba(0,200,240,.35);
-      color:${CONFIG.colors.cyan}; border-radius:20px; padding:5px 12px;
+      color:#00C8F0; border-radius:20px; padding:5px 12px;
       font-size:11px; font-family:'Poppins',sans-serif; font-weight:600;
       cursor:pointer; transition:background .15s,color .15s; white-space:nowrap;
     }
@@ -161,10 +172,10 @@ INSTRUCTIONS IMPORTANTES :
       line-height:1.4; transition:border-color .15s; outline:none;
     }
     #ppro-input::placeholder { color:rgba(255,255,255,.3); }
-    #ppro-input:focus { border-color:${CONFIG.colors.cyan}; }
+    #ppro-input:focus { border-color:#00C8F0; }
     #ppro-send {
       width:42px; height:42px; border-radius:12px;
-      background:linear-gradient(135deg,${CONFIG.colors.blue},${CONFIG.colors.cyan});
+      background:linear-gradient(135deg,#0057FF,#00C8F0);
       border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
       flex-shrink:0; transition:opacity .15s,transform .15s;
     }
@@ -173,7 +184,7 @@ INSTRUCTIONS IMPORTANTES :
 
     #ppro-footer { text-align:center; padding:6px; font-size:10px; color:rgba(255,255,255,.2); flex-shrink:0; }
     #ppro-footer a { color:rgba(0,200,240,.45); text-decoration:none; }
-    #ppro-footer a:hover { color:${CONFIG.colors.cyan}; }
+    #ppro-footer a:hover { color:#00C8F0; }
 
     @keyframes ppro-fadeup { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
     @keyframes ppro-bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} }
@@ -250,7 +261,15 @@ INSTRUCTIONS IMPORTANTES :
     msgs.removeChild(typing);
     const d = document.createElement("div");
     d.className = "ppro-msg ppro-msg-" + (role === "user" ? "user" : "bot");
-    d.innerHTML = text.split('\n').map(line => line ? `<span>${line}</span>` : `<br>`).join('<br>');
+    if (role === "user") {
+      d.textContent = text;
+    } else {
+      d.innerHTML = text.split('\n')
+        .map(line => line.trim()
+          ? `<span style="display:block;margin-bottom:5px;">${line}</span>`
+          : `<span style="display:block;margin-bottom:3px;"></span>`)
+        .join('');
+    }
     msgs.appendChild(d);
     msgs.appendChild(typing);
     msgs.scrollTop = msgs.scrollHeight;
