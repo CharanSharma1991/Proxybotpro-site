@@ -121,6 +121,7 @@ INSTRUCTIONS IMPORTANTES :
     .ppro-msg-bot {
       background:rgba(0,200,240,.09); border:1px solid rgba(0,200,240,.18);
       color:rgba(255,255,255,.92); align-self:flex-start; border-bottom-left-radius:4px;
+      width:100%; max-width:100%;
     }
     .ppro-msg-user {
       background:linear-gradient(135deg,${CONFIG.colors.blue},#0041CC);
