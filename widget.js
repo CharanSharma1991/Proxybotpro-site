@@ -19,9 +19,9 @@ ProxyBot Pro propose :
 - Plateforme de gestion sur-mesure
 
 Tarifs :
-- Starter : 49 euros par mois
-- Standard : 69 euros par mois
-- Premium : 99 euros par mois
+- Starter : 49 euros par mois — Chatbot IA WhatsApp 24h/24, idéal pour démarrer
+- Standard : 69 euros par mois — Chatbot + création de site web professionnel inclus
+- Premium : 99 euros par mois — Solution complète avec automatisation et maintenance
 
 Contact : contact@proxybotpro.fr | +33 9 56 37 27 64 | www.proxybotpro.fr
 
