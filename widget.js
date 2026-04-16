@@ -1,18 +1,14 @@
 (function () {
-  // ─── CLIENT CONFIG ──────────────────────────────────────────────────────────
-  // Each client's embed snippet defines window.PProConfig BEFORE loading this script.
-  // Falls back to ProxyBot Pro defaults if not set.
   const CLIENT = window.PProConfig || {};
 
   const CONFIG = {
-    apiEndpoint: CLIENT.apiEndpoint || "https://chat.summer-recipe-25d9.workers.dev",
+    apiEndpoint:    CLIENT.apiEndpoint    || "https://chat.summer-recipe-25d9.workers.dev",
     brandName:      CLIENT.brandName      || "Assistant Virtuel",
     welcomeMessage: CLIENT.welcomeMessage || "Bonjour 👋 Comment puis-je vous aider ?",
     placeholder:    CLIENT.placeholder    || "Écrivez votre question...",
-    accentColor:    CLIENT.accentColor    || "#0057FF",   // customise per brand
+    accentColor:    CLIENT.accentColor    || "#0057FF",
     quickReplies:   CLIENT.quickReplies   || ["Horaires", "Tarifs", "Adresse", "Contact"],
 
-    // ── THE MAGIC: client-specific system prompt ─────────────────────────────
     systemPrompt: CLIENT.systemPrompt || `Tu es l'assistant virtuel de ProxyBot Pro, une entreprise digitale locale basée en Sarthe (72), France.
 
 ProxyBot Pro propose :
@@ -23,23 +19,20 @@ ProxyBot Pro propose :
 - Plateforme de gestion sur-mesure
 
 Tarifs :
-- Starter : 49€/mois
-- Standard : 69€/mois
-- Premium : 99€/mois
+- Starter : 49 euros par mois
+- Standard : 69 euros par mois
+- Premium : 99 euros par mois
 
 Contact : contact@proxybotpro.fr | +33 9 56 37 27 64 | www.proxybotpro.fr
 
-Réponds toujours en français, sois professionnel et chaleureux.
-Encourage les visiteurs à prendre rendez-vous pour une démo gratuite.
-Règles de formatage :
-- Réponses courtes et claires, maximum 3-4 lignes par message
-- Une idée par ligne, bien espacée
-- Pas plus de 2 emojis par réponse
-- Pas de longs paragraphes
-- N'utilise jamais de symboles markdown comme **, *, ##, ou autres
-- Écris en texte simple et lisible`,
+INSTRUCTIONS IMPORTANTES :
+- Réponds TOUJOURS en texte brut sans aucun formatage
+- N'utilise JAMAIS les symboles comme **, *, ##, --, ou tout autre markdown
+- Réponds en 3 à 4 lignes maximum par message
+- Maximum 1 emoji par réponse
+- Sois professionnel et chaleureux
+- Encourage les visiteurs à réserver une démo gratuite`,
 
-    // Fixed ProxyBot brand palette
     colors: {
       navy: "#060B18",
       blue: "#0057FF",
@@ -48,10 +41,8 @@ Règles de formatage :
     },
   };
 
-  // ─── PREVENT DOUBLE INIT ────────────────────────────────────────────────────
   if (document.getElementById("ppro-widget-root")) return;
 
-  // ─── STYLES ─────────────────────────────────────────────────────────────────
   const style = document.createElement("style");
   style.textContent = `
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
@@ -184,7 +175,6 @@ Règles de formatage :
   `;
   document.head.appendChild(style);
 
-  // ─── DOM ─────────────────────────────────────────────────────────────────────
   const qrHTML = CONFIG.quickReplies
     .map(label => `<button class="ppro-qr">${label}</button>`)
     .join("");
@@ -237,7 +227,6 @@ Règles de formatage :
   `;
   document.body.appendChild(root);
 
-  // ─── REFS ────────────────────────────────────────────────────────────────────
   const bubble = document.getElementById("ppro-bubble");
   const win    = document.getElementById("ppro-window");
   const closeB = document.getElementById("ppro-close");
@@ -248,11 +237,9 @@ Règles de formatage :
   const qrBtns = document.querySelectorAll(".ppro-qr");
   let history  = [];
 
-  // ─── OPEN / CLOSE ────────────────────────────────────────────────────────────
   bubble.addEventListener("click", () => { win.classList.add("ppro-open"); bubble.style.display="none"; input.focus(); });
   closeB.addEventListener("click", () => { win.classList.remove("ppro-open"); bubble.style.display="flex"; });
 
-  // ─── HELPERS ─────────────────────────────────────────────────────────────────
   function addMsg(text, role) {
     msgs.removeChild(typing);
     const d = document.createElement("div");
@@ -263,7 +250,6 @@ Règles de formatage :
     msgs.scrollTop = msgs.scrollHeight;
   }
 
-  // ─── SEND ────────────────────────────────────────────────────────────────────
   async function doSend(text) {
     text = text.trim();
     if (!text || sendB.disabled) return;
@@ -301,7 +287,7 @@ Règles de formatage :
 
     } catch (err) {
       typing.classList.remove("ppro-visible");
-      addMsg("Une erreur est survenue. Contactez-nous directement, nous répondons rapidement ! 😊", "bot");
+      addMsg("Une erreur est survenue. Contactez-nous directement, nous répondons rapidement !", "bot");
       console.error("[ProxyBot Widget]", err);
     } finally {
       sendB.disabled = false;
@@ -309,7 +295,6 @@ Règles de formatage :
     }
   }
 
-  // ─── EVENTS ──────────────────────────────────────────────────────────────────
   qrBtns.forEach(b => b.addEventListener("click", () => {
     doSend(b.textContent.replace(/^[^\w\u00C0-\u024F]+/, "").trim());
   }));
