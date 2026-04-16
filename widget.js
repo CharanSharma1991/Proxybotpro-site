@@ -247,7 +247,7 @@ INSTRUCTIONS IMPORTANTES :
     msgs.removeChild(typing);
     const d = document.createElement("div");
     d.className = "ppro-msg ppro-msg-" + (role === "user" ? "user" : "bot");
-    d.textContent = text;
+    d.innerHTML = text.split('\n').map(line => line ? `<span>${line}</span>` : `<br>`).join('<br>');
     msgs.appendChild(d);
     msgs.appendChild(typing);
     msgs.scrollTop = msgs.scrollHeight;
