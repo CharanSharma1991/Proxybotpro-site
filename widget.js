@@ -120,9 +120,9 @@ INSTRUCTIONS IMPORTANTES :
       box-sizing:border-box;
     }
     .ppro-msg-bot {
-      background:rgba(0,200,240,.09); border:1px solid rgba(0,200,240,.18);
-      color:rgba(255,255,255,.92); align-self:flex-start; border-bottom-left-radius:4px;
-      width:90%; max-width:90%; margin:4px 8px;
+      background:transparent; border:none;
+      color:rgba(255,255,255,.92); align-self:flex-start;
+      width:95%; max-width:95%; padding:4px 8px;
     }
     .ppro-msg-user {
       background:linear-gradient(135deg,${CONFIG.colors.blue},#0041CC);
