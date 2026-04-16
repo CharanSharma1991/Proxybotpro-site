@@ -127,7 +127,7 @@ INSTRUCTIONS IMPORTANTES :
       border-left:2px solid rgba(0,200,240,.4);
       color:rgba(255,255,255,.92);
       align-self:flex-start;
-      padding:4px 25px;
+      padding:4px 40px;
       width:95%;
       max-width:95%;
     }
