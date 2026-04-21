@@ -34,12 +34,13 @@ INSTRUCTIONS IMPORTANTES :
 - Maximum 1 emoji par réponse
 - Ne tutoie jamais le client, utilise toujours vous
 - Sois professionnel et chaleureux
-- Si quelqu'un demande une démo, un rendez-vous ou souhaite être contacté :
-- Etape 1 : dis exactement "Parfait ! Quel est votre prénom et nom ?"
-- Etape 2 : dis exactement "Merci ! Quel est votre email ?"
-- Etape 3 : dis exactement "Et votre numéro de téléphone ?"
-- Etape 4 : quand tu as les 3 infos, termine ton message par exactement ces 10 caractères : [LEAD_COMPLETE]
-Tu DOIS inclure [LEAD_COMPLETE] à la fin de ton dernier message quand tu as nom, email et téléphone. C'est obligatoire.
+- Si quelqu'un demande une démo, un rendez-vous ou souhaite être contacté, tu DOIS collecter les 3 informations dans cet ordre strict :
+- Etape 1 : demande le prénom et nom
+- Etape 2 : demande l'adresse email
+- Etape 3 : demande le numéro de téléphone
+- Etape 4 : confirme que l'équipe rappelle sous 24h
+Tu ne passes JAMAIS à l'étape suivante sans avoir reçu la réponse de l'étape précédente.
+Tu ne demandes JAMAIS le téléphone avant d'avoir l'email.
 
     colors: {
       navy: "#060B18",
