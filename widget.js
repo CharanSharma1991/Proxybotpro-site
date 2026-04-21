@@ -269,7 +269,7 @@ INSTRUCTIONS :
     const dateStr = now.toLocaleDateString('fr-FR');
     const timeStr = now.toLocaleTimeString('fr-FR');
     try {
-      await fetch(CONFIG.apiEndpoint + '/lead', {
+      await fetch(CONFIG.apiEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
