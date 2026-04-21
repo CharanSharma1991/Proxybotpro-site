@@ -12,35 +12,27 @@
     systemPrompt: CLIENT.systemPrompt || `Tu es l'assistant virtuel de ProxyBot Pro, une entreprise digitale locale basée en Sarthe (72), France.
 
 ProxyBot Pro propose :
-- Chatbot IA WhatsApp 24h/24 7j/7
-- Création de site web professionnel
-- Maintenance de site web
-- Automatisation digitale
-- Plateforme de gestion sur-mesure
+• Chatbot IA WhatsApp 24h/24 7j/7
+• Création de site web professionnel
+• Maintenance de site web
+• Automatisation digitale
+• Plateforme de gestion sur-mesure
 
 Tarifs :
-- Starter : 49 euros par mois
-- Standard : 69 euros par mois
-- Premium : 99 euros par mois
+• Starter : 49 euros par mois
+• Standard : 69 euros par mois
+• Premium : 99 euros par mois
 
 Contact : contact@proxybotpro.fr | +33 9 56 37 27 64 | www.proxybotpro.fr
 
-INSTRUCTIONS IMPORTANTES :
-- Réponds TOUJOURS en texte brut sans aucun formatage
-- N'utilise JAMAIS les symboles comme **, *, ##, -- ou tout autre markdown
-- Pour les listes utilise uniquement le symbole • au début de chaque ligne
-- Réponds en 5 lignes maximum par message
-- Maximum 1 emoji par réponse
-- Ne tutoie jamais le client, utilise toujours vous
-- Sois professionnel et chaleureux
-
-COLLECTE DE LEADS - TRES IMPORTANT :
-Quand quelqu'un demande une démo, un rendez-vous ou souhaite être contacté, tu DOIS suivre ces 4 étapes dans l'ordre EXACT, une par une :
-ETAPE 1 : dis exactement "Parfait ! Quel est votre prénom et nom ?"
-ETAPE 2 : après avoir reçu le nom, dis exactement "Merci ! Quelle est votre adresse email ?"
-ETAPE 3 : après avoir reçu l'email, dis exactement "Et votre numéro de téléphone ?"
-ETAPE 4 : après avoir reçu le téléphone, dis exactement "Merci ! Notre équipe vous contacte sous 24h. À très bientôt !"
-RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la réponse précédente. Tu demandes TOUJOURS l'email avant le téléphone. JAMAIS de téléphone sans email d'abord.`,
+INSTRUCTIONS :
+• Réponds en texte brut sans formatage markdown
+• Utilise uniquement • pour les listes
+• Maximum 5 lignes par message
+• Maximum 1 emoji par réponse
+• Utilise toujours vous
+• Sois professionnel et chaleureux
+• Si quelqu'un demande une démo ou un rendez-vous, réponds uniquement : "Parfait ! Je vais noter vos coordonnées."`,
 
     colors: {
       navy: "#060B18",
@@ -56,7 +48,6 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
   style.textContent = `
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
     #ppro-widget-root * { box-sizing:border-box; margin:0; padding:0; font-family:'Poppins',sans-serif; }
-
     #ppro-bubble {
       position:fixed; bottom:90px; right:24px; width:62px; height:62px;
       border-radius:50%; background:linear-gradient(135deg,#0057FF,#00C8F0);
@@ -83,7 +74,6 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
       transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s;
     }
     #ppro-window.ppro-open { transform:scale(1) translateY(0); opacity:1; pointer-events:all; }
-
     #ppro-header {
       background:linear-gradient(135deg,#0057FF,rgba(0,200,240,.12));
       padding:16px 20px; display:flex; align-items:center; gap:12px;
@@ -110,7 +100,6 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
       color:rgba(255,255,255,.7); transition:background .15s,color .15s; flex-shrink:0; margin-left:auto;
     }
     #ppro-close:hover { background:rgba(255,255,255,.2); color:#fff; }
-
     #ppro-messages {
       flex:1; overflow-y:auto; padding:16px;
       display:flex; flex-direction:column; gap:8px;
@@ -118,7 +107,6 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
     }
     #ppro-messages::-webkit-scrollbar { width:4px; }
     #ppro-messages::-webkit-scrollbar-thumb { background:rgba(0,200,240,.2); border-radius:4px; }
-
     .ppro-msg {
       max-width:90%; font-size:13px; line-height:1.7;
       animation:ppro-fadeup .2s ease; word-wrap:break-word; overflow-wrap:break-word;
@@ -134,7 +122,6 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
       color:#fff; align-self:flex-end;
       padding:10px 14px; border-radius:16px; border-bottom-right-radius:4px;
     }
-
     #ppro-typing {
       display:none; align-self:flex-start;
       border-left:2px solid rgba(0,200,240,.4); padding:8px 12px;
@@ -145,7 +132,6 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
       animation:ppro-bounce 1.2s infinite;
     }
     .ppro-dot:nth-child(2){animation-delay:.2s} .ppro-dot:nth-child(3){animation-delay:.4s}
-
     #ppro-quick-replies { padding:0 16px 10px; display:flex; flex-wrap:wrap; gap:6px; flex-shrink:0; }
     .ppro-qr {
       background:transparent; border:1px solid rgba(0,200,240,.35);
@@ -154,7 +140,6 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
       cursor:pointer; transition:background .15s,color .15s; white-space:nowrap;
     }
     .ppro-qr:hover { background:rgba(0,200,240,.15); color:#fff; }
-
     #ppro-input-row {
       padding:12px 16px; display:flex; gap:8px; align-items:flex-end;
       border-top:1px solid rgba(0,200,240,.1); background:rgba(0,0,0,.2); flex-shrink:0;
@@ -175,20 +160,16 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
     }
     #ppro-send:hover { opacity:.85; transform:scale(1.05); }
     #ppro-send:disabled { opacity:.35; cursor:not-allowed; transform:none; }
-
     #ppro-footer { text-align:center; padding:6px; font-size:10px; color:rgba(255,255,255,.2); flex-shrink:0; }
     #ppro-footer a { color:rgba(0,200,240,.45); text-decoration:none; }
     #ppro-footer a:hover { color:#00C8F0; }
-
     @keyframes ppro-fadeup { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
     @keyframes ppro-bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} }
     @keyframes ppro-pulse  { 0%,100%{opacity:1} 50%{opacity:.4} }
   `;
   document.head.appendChild(style);
 
-  const qrHTML = CONFIG.quickReplies
-    .map(label => `<button class="ppro-qr">${label}</button>`)
-    .join("");
+  const qrHTML = CONFIG.quickReplies.map(label => `<button class="ppro-qr">${label}</button>`).join("");
 
   const root = document.createElement("div");
   root.id = "ppro-widget-root";
@@ -246,7 +227,12 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
   const sendB  = document.getElementById("ppro-send");
   const typing = document.getElementById("ppro-typing");
   const qrBtns = document.querySelectorAll(".ppro-qr");
-  let history  = [];
+
+  let history = [];
+  let leadStep = 0; // 0=normal, 1=waiting name, 2=waiting email, 3=waiting phone
+  let leadData = { name: '', email: '', phone: '' };
+
+  const BOOKING_KEYWORDS = ['réserver','reserver','rendez-vous','rdv','démo','demo','je veux','je voudrais','intéressé','interessé','prendre contact','rappeler','nous contacter','audit','formation','consultation'];
 
   bubble.addEventListener("click", () => { win.classList.add("ppro-open"); bubble.style.display="none"; input.focus(); });
   closeB.addEventListener("click", () => { win.classList.remove("ppro-open"); bubble.style.display="flex"; });
@@ -269,36 +255,94 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
     msgs.scrollTop = msgs.scrollHeight;
   }
 
+  function botMsg(text) {
+    setTimeout(() => {
+      typing.classList.remove("ppro-visible");
+      addMsg(text, "bot");
+      sendB.disabled = false;
+      input.focus();
+    }, 600);
+  }
+
+  async function sendLeadEmail() {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('fr-FR');
+    const timeStr = now.toLocaleTimeString('fr-FR');
+    try {
+      await fetch(CONFIG.apiEndpoint + '/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lead: true,
+          name: leadData.name,
+          email: leadData.email,
+          phone: leadData.phone,
+          date: dateStr,
+          time: timeStr
+        })
+      });
+    } catch(e) {
+      console.error('Lead send error', e);
+    }
+  }
+
   async function doSend(text) {
     text = text.trim();
     if (!text || sendB.disabled) return;
 
     addMsg(text, "user");
-    history.push({ role: "user", content: text });
     input.value = "";
     input.style.height = "auto";
     sendB.disabled = true;
     typing.classList.add("ppro-visible");
     msgs.scrollTop = msgs.scrollHeight;
 
+    // LEAD COLLECTION STATE MACHINE
+    if (leadStep === 1) {
+      leadData.name = text;
+      leadStep = 2;
+      botMsg("Merci ! Quelle est votre adresse email ?");
+      return;
+    }
+
+    if (leadStep === 2) {
+      leadData.email = text;
+      leadStep = 3;
+      botMsg("Et votre numéro de téléphone ?");
+      return;
+    }
+
+    if (leadStep === 3) {
+      leadData.phone = text;
+      leadStep = 0;
+      sendLeadEmail();
+      botMsg("Merci " + leadData.name + " ! Notre équipe vous contacte sous 24h. À très bientôt 😊");
+      return;
+    }
+
+    // Check for booking intent BEFORE calling AI
+    const textLower = text.toLowerCase();
+    const hasBookingIntent = BOOKING_KEYWORDS.some(k => textLower.includes(k));
+
+    if (hasBookingIntent) {
+      leadStep = 1;
+      botMsg("Parfait ! 😊 Quel est votre prénom et nom ?");
+      return;
+    }
+
+    // Normal AI response
+    history.push({ role: "user", content: text });
+
     try {
       const res = await fetch(CONFIG.apiEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          system: CONFIG.systemPrompt,
-          messages: history
-        })
+        body: JSON.stringify({ system: CONFIG.systemPrompt, messages: history })
       });
 
       if (!res.ok) throw new Error("API " + res.status);
       const data = await res.json();
-
-      const reply =
-        data?.content?.[0]?.text ||
-        data?.reply ||
-        data?.message ||
-        "Désolé, une erreur est survenue. Veuillez nous contacter directement.";
+      const reply = data?.content?.[0]?.text || "Désolé, une erreur est survenue. Veuillez nous contacter directement.";
 
       typing.classList.remove("ppro-visible");
       addMsg(reply, "bot");
@@ -307,7 +351,6 @@ RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la r�
     } catch (err) {
       typing.classList.remove("ppro-visible");
       addMsg("Une erreur est survenue. Contactez-nous directement, nous répondons rapidement !", "bot");
-      console.error("[ProxyBot Widget]", err);
     } finally {
       sendB.disabled = false;
       input.focus();
