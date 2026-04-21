@@ -19,9 +19,9 @@ ProxyBot Pro propose :
 - Plateforme de gestion sur-mesure
 
 Tarifs :
-- Starter : 49 euros par mois — Chatbot IA WhatsApp 24h/24, idéal pour démarrer
-- Standard : 69 euros par mois — Chatbot plus création de site web professionnel inclus
-- Premium : 99 euros par mois — Solution complète avec automatisation et maintenance
+- Starter : 49 euros par mois
+- Standard : 69 euros par mois
+- Premium : 99 euros par mois
 
 Contact : contact@proxybotpro.fr | +33 9 56 37 27 64 | www.proxybotpro.fr
 
@@ -29,18 +29,18 @@ INSTRUCTIONS IMPORTANTES :
 - Réponds TOUJOURS en texte brut sans aucun formatage
 - N'utilise JAMAIS les symboles comme **, *, ##, -- ou tout autre markdown
 - Pour les listes utilise uniquement le symbole • au début de chaque ligne
-- Chaque élément de liste doit être sur sa propre ligne séparée par un saut de ligne
 - Réponds en 5 lignes maximum par message
 - Maximum 1 emoji par réponse
 - Ne tutoie jamais le client, utilise toujours vous
 - Sois professionnel et chaleureux
-- Si quelqu'un demande une démo, un rendez-vous ou souhaite être contacté, tu DOIS collecter les 3 informations dans cet ordre strict :
-- Etape 1 : demande le prénom et nom
-- Etape 2 : demande l'adresse email
-- Etape 3 : demande le numéro de téléphone
-- Etape 4 : confirme que l'équipe rappelle sous 24h
-Tu ne passes JAMAIS à l'étape suivante sans avoir reçu la réponse de l'étape précédente.
-Tu ne demandes JAMAIS le téléphone avant d'avoir l'email.
+
+COLLECTE DE LEADS - TRES IMPORTANT :
+Quand quelqu'un demande une démo, un rendez-vous ou souhaite être contacté, tu DOIS suivre ces 4 étapes dans l'ordre EXACT, une par une :
+ETAPE 1 : dis exactement "Parfait ! Quel est votre prénom et nom ?"
+ETAPE 2 : après avoir reçu le nom, dis exactement "Merci ! Quelle est votre adresse email ?"
+ETAPE 3 : après avoir reçu l'email, dis exactement "Et votre numéro de téléphone ?"
+ETAPE 4 : après avoir reçu le téléphone, dis exactement "Merci ! Notre équipe vous contacte sous 24h. À très bientôt !"
+RÈGLE ABSOLUE : tu ne passes JAMAIS à l'étape suivante sans avoir reçu la réponse précédente. Tu demandes TOUJOURS l'email avant le téléphone. JAMAIS de téléphone sans email d'abord.`,
 
     colors: {
       navy: "#060B18",
@@ -120,36 +120,24 @@ Tu ne demandes JAMAIS le téléphone avant d'avoir l'email.
     #ppro-messages::-webkit-scrollbar-thumb { background:rgba(0,200,240,.2); border-radius:4px; }
 
     .ppro-msg {
-      max-width:90%;
-      font-size:13px;
-      line-height:1.7;
-      animation:ppro-fadeup .2s ease;
-      word-wrap:break-word;
-      overflow-wrap:break-word;
+      max-width:90%; font-size:13px; line-height:1.7;
+      animation:ppro-fadeup .2s ease; word-wrap:break-word; overflow-wrap:break-word;
     }
     .ppro-msg-bot {
-      background:transparent;
-      border:none;
+      background:transparent; border:none;
       border-left:2px solid rgba(0,200,240,.4);
-      color:rgba(255,255,255,.92);
-      align-self:flex-start;
-      padding:4px 30px;
-      width:95%;
-      max-width:95%;
+      color:rgba(255,255,255,.92); align-self:flex-start;
+      padding:4px 30px; width:95%; max-width:95%;
     }
     .ppro-msg-user {
       background:linear-gradient(135deg,#0057FF,#0041CC);
-      color:#fff;
-      align-self:flex-end;
-      padding:10px 14px;
-      border-radius:16px;
-      border-bottom-right-radius:4px;
+      color:#fff; align-self:flex-end;
+      padding:10px 14px; border-radius:16px; border-bottom-right-radius:4px;
     }
 
     #ppro-typing {
       display:none; align-self:flex-start;
-      border-left:2px solid rgba(0,200,240,.4);
-      padding:8px 12px;
+      border-left:2px solid rgba(0,200,240,.4); padding:8px 12px;
     }
     #ppro-typing.ppro-visible { display:flex; gap:5px; align-items:center; }
     .ppro-dot {
