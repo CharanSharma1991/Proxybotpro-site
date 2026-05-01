@@ -390,24 +390,44 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
     <p class="section-label" style="text-align:center">📲 Contact</p>
     <h2 class="cta-title">Prêt à automatiser<br/>votre accueil client ?</h2>
     <p class="cta-sub">Obtenez votre chatbot personnalisé en 48h.<br/>Démo gratuite, sans engagement.</p>
-    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
-      <input id="cf-name" type="text" placeholder="Votre nom et prénom *" style="background:#0e1320;border:1px solid #1e2a3a;border-radius:10px;padding:14px 18px;color:#e8edf5;font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;width:100%;transition:border-color .2s" onfocus="this.style.borderColor='#25D366'" onblur="this.style.borderColor='#1e2a3a'"/>
-      <input id="cf-business" type="text" placeholder="Nom de votre établissement *" style="background:#0e1320;border:1px solid #1e2a3a;border-radius:10px;padding:14px 18px;color:#e8edf5;font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;width:100%;transition:border-color .2s" onfocus="this.style.borderColor='#25D366'" onblur="this.style.borderColor='#1e2a3a'"/>
-      <input id="cf-phone" type="tel" placeholder="Votre téléphone *" style="background:#0e1320;border:1px solid #1e2a3a;border-radius:10px;padding:14px 18px;color:#e8edf5;font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;width:100%;transition:border-color .2s" onfocus="this.style.borderColor='#25D366'" onblur="this.style.borderColor='#1e2a3a'"/>
-      <input id="cf-email" type="email" placeholder="Votre email" style="background:#0e1320;border:1px solid #1e2a3a;border-radius:10px;padding:14px 18px;color:#e8edf5;font-family:'DM Sans',sans-serif;font-size:.95rem;outline:none;width:100%;transition:border-color .2s" onfocus="this.style.borderColor='#25D366'" onblur="this.style.borderColor='#1e2a3a'"/>
-    </div>
-    <button onclick="submitContact()" class="wa-btn" style="width:100%;justify-content:center;border:none;cursor:pointer">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-      Demander ma démo gratuite
-    </button>
-    <div id="cf-msg" style="margin-top:14px;font-size:.82rem;min-height:20px"></div>
-    <div style="margin-top:28px;padding-top:20px;border-top:1px solid #1e2a3a;display:flex;flex-direction:column;gap:8px;align-items:center">
-      <a href="https://proxybook.fr" target="_blank" style="display:inline-block;background:#00C8F0;color:#060B18;font-weight:700;padding:14px 28px;border-radius:10px;text-decoration:none;font-size:1rem;margin-bottom:8px;">📅 Réserver en ligne</a>
-      <p style="font-size:.82rem;color:#5b6e85">Ou contactez-nous directement :</p>
-      <a href="tel:+33956372764" style="color:#25D366;font-weight:700;font-size:.95rem;text-decoration:none">📞 09 56 37 27 64</a>
-      <a href="mailto:contact@proxybotpro.fr" style="color:#5b6e85;font-size:.85rem;text-decoration:none">✉️ contact@proxybotpro.fr</a>
-    </div>
+    <form action="https://formspree.io/f/xdabkook" method="POST" id="contact-form">
+  <input type="hidden" name="_subject" value="Nouvelle demande de démo - ProxyBot Pro" />
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <input type="text" name="nom" placeholder="Votre nom" required style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid #0057FF40;background:#0D1628;color:white;font-family:'Poppins',sans-serif;font-size:15px;box-sizing:border-box;"/>
+    <input type="text" name="etablissement" placeholder="Votre établissement" required style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid #0057FF40;background:#0D1628;color:white;font-family:'Poppins',sans-serif;font-size:15px;box-sizing:border-box;"/>
+    <input type="tel" name="telephone" placeholder="Votre téléphone" required style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid #0057FF40;background:#0D1628;color:white;font-family:'Poppins',sans-serif;font-size:15px;box-sizing:border-box;"/>
+    <input type="email" name="email" placeholder="Votre email" required style="width:100%;padding:14px 18px;border-radius:10px;border:1px solid #0057FF40;background:#0D1628;color:white;font-family:'Poppins',sans-serif;font-size:15px;box-sizing:border-box;"/>
   </div>
+  <button type="submit" style="margin-top:16px;width:100%;padding:16px;background:linear-gradient(90deg,#00C8F0,#00FFB2);color:#060B18;font-family:'Poppins',sans-serif;font-weight:900;font-size:16px;border:none;border-radius:10px;cursor:pointer;">
+    Demander ma démo gratuite
+  </button>
+  <div id="cf-msg" style="display:none;margin-top:14px;color:#00FFB2;font-family:'Poppins',sans-serif;font-size:14px;text-align:center;">
+    ✅ Merci ! Nous vous contactons dans les 24h.
+  </div>
+</form>
+<script>
+  const cfForm = document.getElementById('contact-form');
+  cfForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const res = await fetch(cfForm.action, {
+      method: 'POST',
+      body: new FormData(cfForm),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      cfForm.reset();
+      document.getElementById('cf-msg').style.display = 'block';
+    }
+  });
+</script>
+<div style="margin-top:28px;padding-top:20px;border-top:1px solid #1a2a4a">
+  <a href="https://proxybook.fr" target="_blank">
+    <p style="font-size:.82rem;color:#5b6e85">Ou réservez directement en ligne</p>
+  </a>
+  <a href="tel:+33956372764" style="color:#25D366;font-size:.9rem;">📞 09 56 37 27 64</a>
+  <a href="mailto:contact@proxybotpro.fr" style="color:#5b6e85;font-size:.85rem;display:block;margin-top:6px;">contact@proxybotpro.fr</a>
+</div>
+</div>
 </div>
 
 <!-- FOOTER -->
