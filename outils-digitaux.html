@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Outils Digitaux Sur Mesure — ProxyBot Pro</title>
+<meta name="description" content="Calculateurs, formulaires et outils digitaux sur mesure pour votre entreprise. Développé par ProxyBot Pro, Sarthe (72)."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080b12;--surface:#0e1320;--card:#121826;--border:#1e2a3a;
+  --green:#25D366;--green2:#128C7E;--teal:#00c4b4;
+  --text:#e8edf5;--muted:#5b6e85;--radius:14px;
+  --font-head:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;overflow-x:hidden}
+::selection{background:var(--green);color:#000}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulseRing{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.6);opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes gridMove{from{background-position:0 0}to{background-position:40px 40px}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.fade-up{animation:fadeUp .7s ease forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(8,11,18,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-size:1.2rem;font-weight:800;color:var(--text);text-decoration:none}
+.nav-logo-icon{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--green),var(--green2));display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-link{color:var(--muted);font-size:.85rem;font-weight:500;text-decoration:none;transition:color .2s}
+.nav-link:hover{color:var(--text)}
+.nav-cta{background:var(--green);color:#000;font-weight:700;font-size:.85rem;padding:9px 20px;border-radius:8px;text-decoration:none;transition:opacity .2s}
+.nav-cta:hover{opacity:.88}
+@media(max-width:600px){nav{padding:14px 20px}.nav-link{display:none}}
+
+/* HERO */
+.hero{min-height:55vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(37,211,102,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(37,211,102,.05) 1px,transparent 1px);background-size:40px 40px;animation:gridMove 22s linear infinite;-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent);mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}
+.hero-glow{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:800px;height:600px;pointer-events:none;background:radial-gradient(ellipse,rgba(37,211,102,.08) 0%,transparent 65%);filter:blur(60px)}
+
+.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:100px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.22);color:var(--green);font-size:.77rem;font-weight:600;letter-spacing:.04em;margin-bottom:24px}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--green);position:relative;flex-shrink:0}
+.badge-dot::after{content:'';position:absolute;inset:-3px;border-radius:50%;background:var(--green);animation:pulseRing 1.8s ease-out infinite}
+
+.hero h1{font-family:var(--font-head);font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--green) 0%,var(--teal) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{max-width:540px;color:var(--muted);font-size:1.05rem;font-weight:300;margin-bottom:36px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#000;font-weight:700;font-size:.95rem;padding:13px 26px;border-radius:10px;text-decoration:none;transition:all .2s}
+.btn-primary:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,.3)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);font-weight:600;font-size:.95rem;padding:13px 26px;border-radius:10px;text-decoration:none;border:1px solid var(--border);transition:all .2s}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+
+/* SECTION */
+.section{padding:80px 24px;max-width:1100px;margin:0 auto}
+.section-label{font-size:.77rem;font-weight:600;letter-spacing:.1em;color:var(--green);text-transform:uppercase;margin-bottom:12px}
+.section-title{font-family:var(--font-head);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;line-height:1.1;letter-spacing:-.025em;margin-bottom:14px}
+.section-sub{color:var(--muted);font-size:1rem;max-width:500px;line-height:1.7}
+
+/* EXAMPLES GRID */
+.examples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+@media(max-width:820px){.examples-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.examples-grid{grid-template-columns:1fr}}
+
+.example-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px 24px;transition:border-color .25s,transform .25s;position:relative;overflow:hidden}
+.example-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--teal));opacity:0;transition:opacity .3s}
+.example-card:hover{border-color:rgba(37,211,102,.25);transform:translateY(-4px)}
+.example-card:hover::before{opacity:1}
+.example-icon{font-size:2rem;margin-bottom:16px;display:block}
+.example-title{font-family:var(--font-head);font-weight:700;font-size:1rem;margin-bottom:8px;color:var(--text)}
+.example-desc{color:var(--muted);font-size:.855rem;line-height:1.65}
+.example-tag{display:inline-block;margin-top:14px;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px;background:rgba(37,211,102,.1);color:var(--green);letter-spacing:.04em}
+
+/* DEMO PREVIEW */
+.demo-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 24px}
+.demo-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:720px){.demo-inner{grid-template-columns:1fr;gap:40px}}
+.demo-text .section-label{margin-bottom:12px}
+.demo-text h2{font-family:var(--font-head);font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:14px}
+.demo-text p{color:var(--muted);font-size:.95rem;line-height:1.7;margin-bottom:24px}
+.demo-preview{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.demo-bar{background:#141f2e;padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.demo-dot{width:10px;height:10px;border-radius:50%}
+.demo-url{flex:1;background:rgba(255,255,255,.05);border-radius:6px;padding:4px 12px;font-size:.75rem;color:var(--muted);font-family:monospace;margin:0 8px}
+.demo-body{padding:20px}
+.demo-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.demo-row:last-child{border-bottom:none;padding-top:14px;font-weight:700;font-size:1rem}
+.demo-row span:first-child{color:var(--muted)}
+.demo-row span:last-child{color:var(--text)}
+.demo-row.result span:last-child{color:var(--green);font-size:1.3rem}
+
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;position:relative}
+@media(max-width:720px){.process-grid{grid-template-columns:1fr 1fr;gap:18px}}
+@media(max-width:440px){.process-grid{grid-template-columns:1fr}}
+.process-grid::before{content:'';position:absolute;top:28px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:.3}
+@media(max-width:720px){.process-grid::before{display:none}}
+.process-step{text-align:center;padding:24px 16px;position:relative}
+.step-num{width:56px;height:56px;border-radius:50%;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;font-size:1.1rem;color:var(--green);margin:0 auto 16px}
+.step-title{font-family:var(--font-head);font-weight:700;font-size:.92rem;margin-bottom:8px}
+.step-desc{color:var(--muted);font-size:.82rem;line-height:1.6}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;align-items:start}
+@media(max-width:720px){.pricing-grid{grid-template-columns:1fr;max-width:420px}}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px 26px;position:relative;transition:transform .25s}
+.price-card:hover{transform:translateY(-5px)}
+.price-card.featured{border-color:var(--green);background:linear-gradient(160deg,#0b1d11 0%,var(--card) 100%);box-shadow:0 0 50px rgba(37,211,102,.1)}
+.popular-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;font-size:.7rem;font-weight:800;padding:4px 14px;border-radius:100px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.price-tier{font-size:.76rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.price-amount{font-family:var(--font-head);font-size:2.8rem;font-weight:800;line-height:1;margin-bottom:4px}
+.price-amount sup{font-size:1.1rem;font-weight:500;color:var(--muted);vertical-align:super;margin-right:2px}
+.price-period{font-size:.8rem;color:var(--muted);margin-bottom:22px}
+.price-divider{height:1px;background:var(--border);margin-bottom:20px}
+.price-feature{display:flex;align-items:flex-start;gap:10px;font-size:.855rem;color:var(--muted);margin-bottom:10px}
+.check{color:var(--green);flex-shrink:0;margin-top:1px}
+.price-btn{width:100%;margin-top:22px;padding:12px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;transition:all .2s;font-family:var(--font-body);text-decoration:none;display:block;text-align:center}
+.price-btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.price-btn-outline:hover{border-color:var(--green);color:var(--green);background:rgba(37,211,102,.05)}
+.price-btn-solid{background:var(--green);color:#000;border:none}
+.price-btn-solid:hover{opacity:.88;box-shadow:0 8px 24px rgba(37,211,102,.28)}
+
+/* FAQ */
+.faq-list{margin-top:40px;display:flex;flex-direction:column;gap:12px;max-width:700px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-q{padding:18px 22px;font-weight:600;font-size:.95rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;transition:color .2s}
+.faq-q:hover{color:var(--green)}
+.faq-icon{color:var(--muted);font-size:1.2rem;transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--green)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding:0 22px 18px}
+.faq-a p{color:var(--muted);font-size:.9rem;line-height:1.7}
+
+/* CTA */
+.cta-section{padding:80px 24px 100px;position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(37,211,102,.06) 0%,transparent 70%)}
+.cta-box{position:relative;max-width:620px;margin:0 auto;background:var(--card);border:1px solid rgba(37,211,102,.18);border-radius:24px;padding:56px 44px;text-align:center;box-shadow:0 0 80px rgba(37,211,102,.05)}
+.cta-box h2{font-family:var(--font-head);font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;line-height:1.15;margin-bottom:12px}
+.cta-box p{color:var(--muted);margin-bottom:28px;font-size:.97rem}
+@media(max-width:600px){.cta-box{padding:36px 24px}}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 40px;color:var(--muted);font-size:.8rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{color:var(--muted);text-decoration:none;transition:color .2s}
+footer a:hover{color:var(--green)}
+.float-wa-ring{position:fixed;bottom:26px;right:26px;z-index:199;width:54px;height:54px;border-radius:50%;border:2px solid var(--green);pointer-events:none;animation:pulseRing 2.2s ease-out infinite}
+.float-wa{position:fixed;bottom:26px;right:26px;z-index:200;width:54px;height:54px;border-radius:50%;background:var(--green);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);animation:float 3s ease-in-out infinite;text-decoration:none;transition:transform .2s}
+.float-wa:hover{transform:scale(1.1) !important}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">💬</div>
+    ProxyBot<span style="color:var(--green)">Pro</span>
+  </a>
+  <div class="nav-right">
+    <a href="/" class="nav-link">← Retour</a>
+    <a href="contact.html" class="nav-cta">Démarrer →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="badge fade-up"><div class="badge-dot"></div>Nouveau service · ProxyBot Pro</div>
+  <h1 class="fade-up d1">Outils digitaux<br/><span class="grad">sur mesure</span></h1>
+  <p class="fade-up d2">Calculateurs, simulateurs, formulaires intelligents et tableaux de bord — des outils qui travaillent pour votre entreprise 24h/24, sans effort de votre part.</p>
+  <div class="hero-btns fade-up d3">
+    <a href="#pricing" class="btn-primary">Voir les tarifs</a>
+    <a href="contact.html" class="btn-ghost">Demander un devis gratuit</a>
+  </div>
+</div>
+
+<!-- EXAMPLES -->
+<section class="section">
+  <p class="section-label">✦ Exemples concrets</p>
+  <h2 class="section-title">Un outil digital pour<br/>chaque type d'activité</h2>
+  <p class="section-sub">Chaque outil est conçu sur mesure pour votre métier et vos clients. Voici quelques exemples de ce que nous créons.</p>
+  <div class="examples-grid">
+    <div class="example-card">
+      <span class="example-icon">🧮</span>
+      <div class="example-title">Calculateur de retrait</div>
+      <div class="example-desc">Pour les micro-entrepreneurs — calcule automatiquement le montant sécurisé à se verser après URSSAF, charges et réserve.</div>
+      <span class="example-tag">DÉJÀ EN LIGNE</span>
+    </div>
+    <div class="example-card">
+      <span class="example-icon">💇</span>
+      <div class="example-title">Simulateur de devis coiffure</div>
+      <div class="example-desc">Vos clients choisissent leurs prestations, le simulateur calcule le prix estimé et envoie automatiquement le devis par email.</div>
+      <span class="example-tag">OUTIL AVANCÉ</span>
+    </div>
+    <div class="example-card">
+      <span class="example-icon">🏗️</span>
+      <div class="example-title">Estimateur travaux BTP</div>
+      <div class="example-desc">Surface, matériaux, délais — l'outil génère une estimation instantanée et vous envoie les coordonnées du prospect.</div>
+      <span class="example-tag">OUTIL AVANCÉ</span>
+    </div>
+    <div class="example-card">
+      <span class="example-icon">🍽️</span>
+      <div class="example-title">Configurateur de menu</div>
+      <div class="example-desc">Pour les restaurants — vos clients composent leur menu de groupe, le total se calcule en temps réel et valide la réservation.</div>
+      <span class="example-tag">OUTIL SIMPLE</span>
+    </div>
+    <div class="example-card">
+      <span class="example-icon">📦</span>
+      <div class="example-title">Calculateur de livraison</div>
+      <div class="example-desc">Poids, distance, options — l'outil calcule le tarif de livraison et génère une demande de commande automatiquement.</div>
+      <span class="example-tag">OUTIL SIMPLE</span>
+    </div>
+    <div class="example-card">
+      <span class="example-icon">🏋️</span>
+      <div class="example-title">Tableau de bord coaching</div>
+      <div class="example-desc">Vos clients suivent leurs objectifs, leur progression et leurs séances. Vous recevez un rapport hebdomadaire automatique.</div>
+      <span class="example-tag">SUR MESURE</span>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO PREVIEW -->
+<div class="demo-section">
+  <div class="demo-inner">
+    <div class="demo-text">
+      <p class="section-label">🔴 Exemple live</p>
+      <h2>Voyez notre calculateur<br/>de retrait en action</h2>
+      <p>Nous avons créé cet outil pour les micro-entrepreneurs français. En 30 secondes, ils savent exactement combien ils peuvent se verser en toute sécurité.</p>
+      <a href="/calculateur" class="btn-primary" target="_blank">Tester le calculateur →</a>
+    </div>
+    <div class="demo-preview">
+      <div class="demo-bar">
+        <div class="demo-dot" style="background:#ff5f56"></div>
+        <div class="demo-dot" style="background:#ffbd2e"></div>
+        <div class="demo-dot" style="background:#27c93f"></div>
+        <div class="demo-url">proxybotpro.fr/calculateur</div>
+      </div>
+      <div class="demo-body">
+        <div class="demo-row"><span>Chiffre d'affaires</span><span>2 500 €</span></div>
+        <div class="demo-row"><span>— Cotisations URSSAF (22%)</span><span style="color:#ff6b6b">- 550 €</span></div>
+        <div class="demo-row"><span>— Dépenses pro</span><span style="color:#ff6b6b">- 180 €</span></div>
+        <div class="demo-row"><span>— Réserve (10%)</span><span style="color:#FFB347">- 250 €</span></div>
+        <div class="demo-row result"><span>✅ Retrait sécurisé</span><span>1 520 €</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="section">
+  <p class="section-label">⚙️ Comment ça marche</p>
+  <h2 class="section-title">Livré en 5 jours,<br/>clé en main</h2>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-num">1</div>
+      <div class="step-title">Briefing</div>
+      <div class="step-desc">Vous décrivez votre outil idéal — objectif, utilisateurs, données à traiter.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">2</div>
+      <div class="step-title">Maquette</div>
+      <div class="step-desc">On vous soumet une maquette visuelle sous 48h pour validation.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">3</div>
+      <div class="step-title">Développement</div>
+      <div class="step-desc">L'outil est développé, testé et intégré à votre site en 3-5 jours.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">4</div>
+      <div class="step-title">Mise en ligne</div>
+      <div class="step-desc">Déploiement, formation et support inclus. Vous êtes autonome.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing" style="padding-top:0">
+  <p class="section-label">💳 Tarifs clairs</p>
+  <h2 class="section-title">Simple. Transparent.<br/>Sans surprise.</h2>
+  <p class="section-sub">Paiement unique, livraison rapide. Pas d'abonnement — vous êtes propriétaire de votre outil.</p>
+  <div class="pricing-grid">
+
+    <div class="price-card">
+      <div class="price-tier">Outil Simple</div>
+      <div class="price-amount"><sup>€</sup>199</div>
+      <div class="price-period">paiement unique · livraison 3 jours</div>
+      <div class="price-divider"></div>
+      <div class="price-feature"><span class="check">✓</span><span>Calculateur ou formulaire basique</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>1-3 champs de saisie</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Résultat calculé en temps réel</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Intégration sur votre site</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Design aux couleurs de votre marque</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>1 mois de support inclus</span></div>
+      <a href="contact.html" class="price-btn price-btn-outline">Démarrer →</a>
+    </div>
+
+    <div class="price-card featured">
+      <div class="popular-badge">⭐ Plus populaire</div>
+      <div class="price-tier">Outil Avancé</div>
+      <div class="price-amount"><sup>€</sup>349</div>
+      <div class="price-period">paiement unique · livraison 5 jours</div>
+      <div class="price-divider"></div>
+      <div class="price-feature"><span class="check">✓</span><span>Outil multi-étapes ou multi-calculs</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Notifications email automatiques</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Envoi des résultats au client</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Récapitulatif envoyé à votre boîte mail</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Tout Outil Simple +</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>3 mois de support inclus</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>1 modification gratuite</span></div>
+      <a href="contact.html" class="price-btn price-btn-solid">Démarrer →</a>
+    </div>
+
+    <div class="price-card">
+      <div class="price-tier">Sur Mesure</div>
+      <div class="price-amount"><sup>€</sup>499</div>
+      <div class="price-period">paiement unique · livraison 7 jours</div>
+      <div class="price-divider"></div>
+      <div class="price-feature"><span class="check">✓</span><span>Outil complexe ou tableau de bord</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Intégration API ou base de données</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Espace client avec connexion</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Rapports automatiques (PDF/email)</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>Tout Outil Avancé +</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>6 mois de support inclus</span></div>
+      <div class="price-feature"><span class="check">✓</span><span>3 modifications gratuites</span></div>
+      <a href="contact.html" class="price-btn price-btn-outline">Démarrer →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">❓ Questions fréquentes</p>
+  <h2 class="section-title">Tout ce que vous<br/>devez savoir</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Est-ce que l'outil sera intégré à mon site existant ? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Oui — nous intégrons l'outil directement sur votre site web existant, sur une nouvelle page dédiée. Aucune action technique de votre part n'est nécessaire.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Je n'ai pas de site web — est-ce possible quand même ? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Absolument. Nous pouvons créer une page autonome hébergée chez nous (ex: votreoutil.proxybotpro.fr) ou vous proposer également la création de votre site web complet.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Combien de temps pour recevoir mon outil ? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Entre 3 et 7 jours ouvrés selon la complexité. Nous commençons toujours par une maquette validée avec vous avant de développer.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Puis-je modifier l'outil après livraison ? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Oui — chaque formule inclut des modifications gratuites (1 pour Avancé, 3 pour Sur Mesure). Au-delà, les modifications sont facturées selon leur complexité.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Les notifications email sont-elles vraiment automatiques ? <span class="faq-icon">+</span></div>
+      <div class="faq-a"><p>Oui — dès qu'un utilisateur utilise votre outil, vous recevez un email récapitulatif avec ses informations et résultats. Votre client reçoit également une confirmation automatique.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-box">
+    <p class="section-label" style="text-align:center;justify-content:center;display:flex">📲 Démarrer</p>
+    <h2>Votre outil digital<br/>en 5 jours</h2>
+    <p>Décrivez-nous votre idée — on s'occupe du reste. Devis gratuit sous 24h.</p>
+    <a href="contact.html" class="btn-primary" style="margin:0 auto;display:inline-flex">Demander mon devis gratuit →</a>
+    <div style="margin-top:20px">
+      <a href="tel:+33956372764" style="color:var(--green);font-size:.9rem;text-decoration:none">📞 09 56 37 27 64</a>
+      <a href="mailto:contact@proxybotpro.fr" style="color:var(--muted);font-size:.85rem;display:block;margin-top:6px;text-decoration:none">contact@proxybotpro.fr</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 ProxyBot Pro · SIRET 103 125 753 00014 · Fontenay-sur-Vègre, Sarthe (72)</span>
+  <div style="display:flex;gap:20px">
+    <a href="/">Accueil</a>
+    <a href="contact.html">Contact</a>
+    <a href="/calculateur">Calculateur gratuit</a>
+  </div>
+</footer>
+
+<div class="float-wa-ring"></div>
+<a href="https://wa.me/33956372764" target="_blank" class="float-wa" title="Nous contacter sur WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#000"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+function toggleFaq(el){
+  const item=el.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+</script>
+</body>
+</html>
