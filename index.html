@@ -43,7 +43,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-dropdown-toggle:hover{color:var(--text)}
 .nav-dropdown-toggle svg{transition:transform .2s}
 .nav-dropdown:hover .nav-dropdown-toggle svg{transform:rotate(180deg)}
-.nav-dropdown-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#0e1320;border:1px solid var(--border);border-radius:12px;padding:8px;min-width:220px;opacity:0;visibility:hidden;transition:all .2s;box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:#0e1320;border:1px solid var(--border);border-radius:12px;padding:8px;min-width:230px;opacity:0;visibility:hidden;transition:all .2s;box-shadow:0 20px 40px rgba(0,0,0,.5)}
 .nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible}
 .nav-dropdown-menu a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:.84rem;font-weight:500;transition:all .2s}
 .nav-dropdown-menu a:hover{background:rgba(37,211,102,.08);color:var(--text)}
@@ -82,7 +82,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* SERVICES STRIP */
 .services-strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0 24px}
-.services-strip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+.services-strip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
 .service-strip-item{display:flex;align-items:center;gap:14px;padding:22px 24px;border-right:1px solid var(--border);text-decoration:none;transition:background .2s}
 .service-strip-item:last-child{border-right:none}
 .service-strip-item:hover{background:rgba(37,211,102,.05)}
@@ -91,7 +91,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .service-strip-text p{font-size:.76rem;color:var(--muted)}
 .service-strip-arrow{margin-left:auto;color:var(--muted);font-size:.9rem;transition:transform .2s,color .2s}
 .service-strip-item:hover .service-strip-arrow{transform:translateX(4px);color:var(--green)}
-@media(max-width:720px){.services-strip-inner{grid-template-columns:1fr}.service-strip-item{border-right:none;border-bottom:1px solid var(--border)}.service-strip-item:last-child{border-bottom:none}}
+@media(max-width:900px){.services-strip-inner{grid-template-columns:repeat(2,1fr)}.service-strip-item:nth-child(2){border-right:none}.service-strip-item:nth-child(3){border-right:1px solid var(--border)}.service-strip-item:nth-child(4){border-right:none}.service-strip-item:nth-child(3),.service-strip-item:nth-child(4){border-top:1px solid var(--border)}}
+@media(max-width:520px){.services-strip-inner{grid-template-columns:1fr}.service-strip-item{border-right:none;border-bottom:1px solid var(--border)}.service-strip-item:last-child{border-bottom:none}}
 
 /* SECTIONS */
 .section{padding:100px 24px;max-width:1200px;margin:0 auto}
@@ -188,7 +189,6 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
 </head>
-</head>
 <body>
 
 <!-- NAV -->
@@ -206,6 +206,7 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
         <a href="creation-site.html"><div class="menu-icon">🌐</div>Création de Site Web</a>
         <a href="creation-plateforme.html"><div class="menu-icon">📅</div>Création de Plateforme</a>
         <a href="bots-automatisation.html"><div class="menu-icon">🤖</div>Bots & Automatisation</a>
+        <a href="calculateur.html"><div class="menu-icon">🧮</div>Calculateur de Retrait</a>
       </div>
     </div>
     <a href="#pricing" class="nav-link">Tarifs</a>
@@ -222,6 +223,7 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
   <a href="creation-site.html">🌐 Création de Site Web</a>
   <a href="creation-plateforme.html">📅 Création de Plateforme</a>
   <a href="bots-automatisation.html">🤖 Bots & Automatisation</a>
+  <a href="calculateur.html">🧮 Calculateur de Retrait</a>
   <div class="mobile-divider"></div>
   <a href="#pricing" onclick="closeMenu()">💳 Tarifs Chatbot</a>
   <a href="contact.html" style="color:var(--green);font-weight:700">→ Devis gratuit</a>
@@ -262,6 +264,11 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
     <a href="bots-automatisation.html" class="service-strip-item">
       <div class="service-strip-icon">🤖</div>
       <div class="service-strip-text"><h4>Bots & Automatisation</h4><p>Email, réunions, base de connaissances</p></div>
+      <span class="service-strip-arrow">→</span>
+    </a>
+    <a href="calculateur.html" class="service-strip-item">
+      <div class="service-strip-icon">🧮</div>
+      <div class="service-strip-text"><h4>Calculateur de Retrait</h4><p>Combien puis-je me verser ?</p></div>
       <span class="service-strip-arrow">→</span>
     </a>
   </div>
@@ -450,6 +457,7 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
       <a href="creation-site.html">Création de Site Web</a>
       <a href="creation-plateforme.html">Plateformes sur Mesure</a>
       <a href="bots-automatisation.html">Bots & Automatisation</a>
+      <a href="calculateur.html">🧮 Calculateur de Retrait</a>
       <a href="#pricing">Chatbot WhatsApp IA</a>
     </div>
     <div class="footer-col">
