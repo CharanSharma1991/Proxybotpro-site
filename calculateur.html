@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur de Retrait Sécurisé — ProxyBot Pro</title>
+<meta name="description" content="Calculez en toute sécurité combien vous pouvez vous verser en tant que micro-entrepreneur. Gratuit, sans inscription.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --navy:#060B18;
+  --blue:#0057FF;
+  --cyan:#00C8F0;
+  --mint:#00FFB2;
+  --white:#ffffff;
+  --text-muted:rgba(255,255,255,0.5);
+  --border:rgba(255,255,255,0.08);
+  --card:rgba(255,255,255,0.04);
+}
+
+body{
+  background:var(--navy);
+  color:var(--white);
+  font-family:'Poppins',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Background grid */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,87,255,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,87,255,0.06) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Top gradient bar */
+.topbar{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--mint));
+  z-index:100;
+}
+
+/* Nav */
+nav{
+  position:fixed;
+  top:3px;left:0;right:0;
+  z-index:99;
+  background:rgba(6,11,24,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:64px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+}
+
+.logo-icon{
+  width:32px;height:32px;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+}
+
+.logo-name{
+  font-weight:900;
+  font-size:17px;
+  color:var(--white);
+  letter-spacing:-0.3px;
+}
+
+.logo-name span{color:var(--cyan);}
+
+.nav-link{
+  color:rgba(255,255,255,0.6);
+  text-decoration:none;
+  font-size:14px;
+  transition:color 0.2s;
+}
+.nav-link:hover{color:var(--white);}
+
+.nav-cta{
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  color:var(--white);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  padding:8px 18px;
+  border-radius:50px;
+}
+
+/* Main */
+main{
+  position:relative;
+  z-index:1;
+  padding:120px 5% 80px;
+  max-width:700px;
+  margin:0 auto;
+}
+
+/* Hero */
+.hero{
+  text-align:center;
+  margin-bottom:48px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(0,255,178,0.1);
+  border:1px solid rgba(0,255,178,0.25);
+  border-radius:50px;
+  padding:5px 14px;
+  font-family:'Share Tech Mono',monospace;
+  font-size:12px;
+  color:var(--mint);
+  letter-spacing:1px;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-weight:900;
+  font-size:clamp(32px,5vw,48px);
+  line-height:1.1;
+  letter-spacing:-1px;
+  margin-bottom:16px;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--mint));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero p{
+  color:var(--text-muted);
+  font-size:16px;
+  line-height:1.7;
+  max-width:480px;
+  margin:0 auto;
+}
+
+/* Card */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:32px;
+  margin-bottom:20px;
+}
+
+.card-label{
+  font-family:'Share Tech Mono',monospace;
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--text-muted);
+  text-transform:uppercase;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.card-label::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--border);
+}
+
+/* Input grid */
+.input-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:24px;
+}
+
+@media(max-width:520px){
+  .input-grid{grid-template-columns:1fr;}
+  nav .nav-link{display:none;}
+}
+
+.input-group{
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px 18px;
+  transition:border-color 0.2s;
+}
+
+.input-group:focus-within{
+  border-color:rgba(0,200,240,0.4);
+}
+
+.input-label{
+  font-size:11px;
+  color:var(--text-muted);
+  font-family:'Share Tech Mono',monospace;
+  letter-spacing:0.5px;
+  margin-bottom:8px;
+  display:block;
+}
+
+.input-group input{
+  width:100%;
+  background:transparent;
+  border:none;
+  outline:none;
+  font-family:'Poppins',sans-serif;
+  font-size:22px;
+  font-weight:700;
+  color:var(--white);
+  appearance:textfield;
+  -moz-appearance:textfield;
+}
+
+.input-group input::-webkit-outer-spin-button,
+.input-group input::-webkit-inner-spin-button{
+  -webkit-appearance:none;
+}
+
+.input-group input::placeholder{color:rgba(255,255,255,0.2);}
+
+.input-suffix{
+  font-size:14px;
+  color:var(--text-muted);
+  margin-top:4px;
+  font-family:'Share Tech Mono',monospace;
+}
+
+/* Breakdown */
+.breakdown{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.breakdown-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:14px;
+}
+
+.breakdown-row .label{color:var(--text-muted);}
+
+.breakdown-row .amount{
+  font-family:'Share Tech Mono',monospace;
+  font-weight:600;
+}
+
+.amount.danger{color:#FF6B6B;}
+.amount.warning{color:#FFB347;}
+.amount.neutral{color:var(--white);}
+
+.breakdown-divider{
+  height:1px;
+  background:var(--border);
+  margin:4px 0;
+}
+
+/* Result */
+.result-card{
+  border-radius:20px;
+  padding:36px;
+  text-align:center;
+  transition:background 0.4s, border-color 0.4s;
+  border:1px solid rgba(0,255,178,0.2);
+  background:rgba(0,255,178,0.05);
+  margin-bottom:20px;
+}
+
+.result-label{
+  font-family:'Share Tech Mono',monospace;
+  font-size:12px;
+  letter-spacing:1.5px;
+  margin-bottom:12px;
+  text-transform:uppercase;
+  color:var(--mint);
+}
+
+.result-amount{
+  font-weight:900;
+  font-size:clamp(48px,8vw,72px);
+  letter-spacing:-2px;
+  line-height:1;
+  color:var(--mint);
+  margin-bottom:10px;
+}
+
+.result-sub{
+  font-size:13px;
+  color:rgba(0,255,178,0.6);
+  font-family:'Share Tech Mono',monospace;
+}
+
+/* Reserve slider */
+.slider-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:4px;
+}
+
+.slider-row label{
+  font-size:12px;
+  color:var(--text-muted);
+  font-family:'Share Tech Mono',monospace;
+  white-space:nowrap;
+}
+
+.slider-row input[type=range]{
+  flex:1;
+  -webkit-appearance:none;
+  height:4px;
+  border-radius:2px;
+  background:var(--border);
+  outline:none;
+}
+
+.slider-row input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:18px;height:18px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  cursor:pointer;
+}
+
+.slider-val{
+  font-family:'Share Tech Mono',monospace;
+  font-size:14px;
+  color:var(--cyan);
+  min-width:36px;
+  text-align:right;
+}
+
+/* Info pills */
+.info-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:20px;
+  justify-content:center;
+}
+
+.info-pill{
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);
+  border-radius:50px;
+  padding:5px 14px;
+  font-size:12px;
+  color:var(--text-muted);
+  font-family:'Share Tech Mono',monospace;
+}
+
+/* CTA section */
+.cta-section{
+  text-align:center;
+  padding:40px 32px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:linear-gradient(135deg,rgba(0,87,255,0.08),rgba(0,200,240,0.05));
+  margin-top:32px;
+}
+
+.cta-section h2{
+  font-weight:900;
+  font-size:24px;
+  margin-bottom:10px;
+  letter-spacing:-0.5px;
+}
+
+.cta-section p{
+  color:var(--text-muted);
+  font-size:14px;
+  margin-bottom:24px;
+  line-height:1.6;
+}
+
+.cta-btn{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--blue),var(--cyan));
+  color:var(--white);
+  text-decoration:none;
+  font-weight:700;
+  font-size:15px;
+  padding:14px 32px;
+  border-radius:50px;
+  letter-spacing:0.2px;
+}
+
+/* Footer */
+footer{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  padding:32px 5% 40px;
+  border-top:1px solid var(--border);
+  font-size:12px;
+  color:rgba(255,255,255,0.25);
+  font-family:'Share Tech Mono',monospace;
+}
+
+footer a{color:var(--cyan);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon">⚡</div>
+    <span class="logo-name">ProxyBot <span>Pro</span></span>
+  </a>
+  <a href="/" class="nav-link">← Retour au site</a>
+  <a href="/#contact" class="nav-cta">Démo gratuite</a>
+</nav>
+
+<main>
+  <div class="hero">
+    <div class="badge">⚡ OUTIL GRATUIT</div>
+    <h1>Combien puis-je<br><span>retirer en sécurité ?</span></h1>
+    <p>Calculez instantanément le montant que vous pouvez vous verser en tant que micro-entrepreneur, après URSSAF, dépenses et réserve.</p>
+  </div>
+
+  <!-- Inputs -->
+  <div class="card">
+    <div class="card-label">Vos données</div>
+    <div class="input-grid">
+      <div class="input-group">
+        <span class="input-label">CHIFFRE D'AFFAIRES</span>
+        <input type="number" id="ca" placeholder="0" min="0" oninput="calc()">
+        <div class="input-suffix">euros encaissés</div>
+      </div>
+      <div class="input-group">
+        <span class="input-label">DÉPENSES PRO</span>
+        <input type="number" id="dep" placeholder="0" min="0" oninput="calc()">
+        <div class="input-suffix">factures, outils, etc.</div>
+      </div>
+      <div class="input-group">
+        <span class="input-label">RETRAITS DÉJÀ EFFECTUÉS</span>
+        <input type="number" id="ret" placeholder="0" min="0" oninput="calc()">
+        <div class="input-suffix">ce mois / trimestre</div>
+      </div>
+      <div class="input-group">
+        <span class="input-label">RÉSERVE DE SÉCURITÉ</span>
+        <div class="slider-row" style="margin-top:6px;">
+          <input type="range" id="reserve" min="0" max="30" value="10" oninput="document.getElementById('resval').textContent=this.value+'%';calc()">
+          <span class="slider-val" id="resval">10%</span>
+        </div>
+        <div class="input-suffix">du CA mis de côté</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-card" id="result-card">
+    <div class="result-label" id="result-label">RETRAIT SÉCURISÉ</div>
+    <div class="result-amount" id="result-amount">0 €</div>
+    <div class="result-sub" id="result-sub">Entrez votre chiffre d'affaires pour commencer</div>
+  </div>
+
+  <!-- Breakdown -->
+  <div class="card">
+    <div class="card-label">Décomposition</div>
+    <div class="breakdown">
+      <div class="breakdown-row">
+        <span class="label">Chiffre d'affaires</span>
+        <span class="amount neutral" id="b-ca">0 €</span>
+      </div>
+      <div class="breakdown-row">
+        <span class="label">— Cotisations URSSAF (22%)</span>
+        <span class="amount danger" id="b-urssaf">- 0 €</span>
+      </div>
+      <div class="breakdown-row">
+        <span class="label">— Dépenses professionnelles</span>
+        <span class="amount danger" id="b-dep">- 0 €</span>
+      </div>
+      <div class="breakdown-row">
+        <span class="label">— Réserve de sécurité</span>
+        <span class="amount warning" id="b-res">- 0 €</span>
+      </div>
+      <div class="breakdown-row">
+        <span class="label">— Retraits déjà effectués</span>
+        <span class="amount danger" id="b-ret">- 0 €</span>
+      </div>
+      <div class="breakdown-divider"></div>
+      <div class="breakdown-row" style="font-weight:700;font-size:16px;">
+        <span style="color:var(--white);">= Disponible à retirer</span>
+        <span class="amount" id="b-total" style="color:var(--mint);">0 €</span>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <span class="info-pill">TVA non applicable · Art. 293B CGI</span>
+      <span class="info-pill">Taux BNC services 2026</span>
+      <span class="info-pill">Franchise en base</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Automatisez votre micro-entreprise</h2>
+    <p>ProxyBot Pro aide les indépendants et artisans locaux à gagner du temps grâce aux outils intelligents — chatbot, site web, réservation en ligne.</p>
+    <a href="/#contact" class="cta-btn">Demander une démo gratuite →</a>
+  </div>
+</main>
+
+<footer>
+  <p>Outil gratuit proposé par <a href="/">ProxyBot Pro</a> · Fontenay-sur-Vègre, Sarthe (72)<br>
+  Calcul indicatif — consultez un expert-comptable pour votre situation personnelle.</p>
+</footer>
+
+<script>
+function fmt(n){
+  return new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0}).format(Math.round(n))+' €';
+}
+
+function calc(){
+  const ca  = parseFloat(document.getElementById('ca').value)||0;
+  const dep = parseFloat(document.getElementById('dep').value)||0;
+  const ret = parseFloat(document.getElementById('ret').value)||0;
+  const resP= parseFloat(document.getElementById('reserve').value)||0;
+
+  const urssaf = ca*0.22;
+  const resAmt = ca*(resP/100);
+  const available = ca - urssaf - dep - resAmt - ret;
+
+  document.getElementById('b-ca').textContent    = fmt(ca);
+  document.getElementById('b-urssaf').textContent= '- '+fmt(urssaf);
+  document.getElementById('b-dep').textContent   = '- '+fmt(dep);
+  document.getElementById('b-res').textContent   = '- '+fmt(resAmt);
+  document.getElementById('b-ret').textContent   = '- '+fmt(ret);
+  document.getElementById('b-total').textContent = fmt(Math.max(0,available));
+
+  const card   = document.getElementById('result-card');
+  const amtEl  = document.getElementById('result-amount');
+  const subEl  = document.getElementById('result-sub');
+  const lblEl  = document.getElementById('result-label');
+
+  if(ca===0){
+    card.style.border='1px solid rgba(255,255,255,0.08)';
+    card.style.background='rgba(255,255,255,0.02)';
+    amtEl.style.color='rgba(255,255,255,0.2)';
+    lblEl.style.color='rgba(255,255,255,0.3)';
+    subEl.style.color='rgba(255,255,255,0.3)';
+    amtEl.textContent='0 €';
+    subEl.textContent="Entrez votre chiffre d'affaires pour commencer";
+  } else if(available<=0){
+    card.style.border='1px solid rgba(255,107,107,0.3)';
+    card.style.background='rgba(255,107,107,0.07)';
+    amtEl.style.color='#FF6B6B';
+    lblEl.style.color='#FF6B6B';
+    subEl.style.color='rgba(255,107,107,0.6)';
+    amtEl.textContent='0 €';
+    subEl.textContent='Attention — les charges dépassent le CA disponible';
+  } else if(available < ca*0.1){
+    card.style.border='1px solid rgba(255,179,71,0.3)';
+    card.style.background='rgba(255,179,71,0.07)';
+    amtEl.style.color='#FFB347';
+    lblEl.style.color='#FFB347';
+    subEl.style.color='rgba(255,179,71,0.6)';
+    amtEl.textContent=fmt(available);
+    subEl.textContent='Marge faible — soyez prudent';
+  } else {
+    card.style.border='1px solid rgba(0,255,178,0.2)';
+    card.style.background='rgba(0,255,178,0.05)';
+    amtEl.style.color='var(--mint)';
+    lblEl.style.color='var(--mint)';
+    subEl.style.color='rgba(0,255,178,0.6)';
+    amtEl.textContent=fmt(available);
+    subEl.textContent='Après URSSAF, dépenses et réserve de sécurité';
+  }
+}
+</script>
+
+</body>
+</html>
