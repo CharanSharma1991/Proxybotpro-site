@@ -82,7 +82,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* SERVICES STRIP */
 .services-strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0 24px}
-.services-strip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.services-strip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
 .service-strip-item{display:flex;align-items:center;gap:14px;padding:22px 24px;border-right:1px solid var(--border);text-decoration:none;transition:background .2s}
 .service-strip-item:last-child{border-right:none}
 .service-strip-item:hover{background:rgba(37,211,102,.05)}
@@ -91,8 +91,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .service-strip-text p{font-size:.76rem;color:var(--muted)}
 .service-strip-arrow{margin-left:auto;color:var(--muted);font-size:.9rem;transition:transform .2s,color .2s}
 .service-strip-item:hover .service-strip-arrow{transform:translateX(4px);color:var(--green)}
-@media(max-width:900px){.services-strip-inner{grid-template-columns:repeat(2,1fr)}.service-strip-item:nth-child(2){border-right:none}.service-strip-item:nth-child(3){border-right:1px solid var(--border)}.service-strip-item:nth-child(4){border-right:none}.service-strip-item:nth-child(3),.service-strip-item:nth-child(4){border-top:1px solid var(--border)}}
-@media(max-width:520px){.services-strip-inner{grid-template-columns:1fr}.service-strip-item{border-right:none;border-bottom:1px solid var(--border)}.service-strip-item:last-child{border-bottom:none}}
+@media(max-width:720px){.services-strip-inner{grid-template-columns:1fr}.service-strip-item{border-right:none;border-bottom:1px solid var(--border)}.service-strip-item:last-child{border-bottom:none}}
 
 /* SECTIONS */
 .section{padding:100px 24px;max-width:1200px;margin:0 auto}
@@ -194,7 +193,7 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <div class="nav-logo-icon">💬</div>
+    <img src="/logo.png" style="width:34px;height:34px;border-radius:10px;object-fit:cover;" alt="ProxyBot Pro"/>
     ProxyBot<span style="color:var(--green)">Pro</span>
   </a>
   <div class="nav-links">
@@ -440,15 +439,27 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
   <a href="tel:+33956372764" style="color:#25D366;font-size:.9rem;">📞 09 56 37 27 64</a>
   <a href="mailto:contact@proxybotpro.fr" style="color:#5b6e85;font-size:.85rem;display:block;margin-top:6px;">contact@proxybotpro.fr</a>
 </div>
+  </div>
 </div>
-</div>
+
+<!-- PROXYBOOK CTA -->
+<section style="padding:70px 24px;text-align:center;background:linear-gradient(135deg,rgba(0,87,255,.08) 0%,rgba(0,200,240,.06) 100%);border-top:1px solid #1e2a3a;border-bottom:1px solid #1e2a3a">
+  <p style="font-size:.8rem;font-weight:700;letter-spacing:.12em;color:#00C8F0;text-transform:uppercase;margin-bottom:12px">✨ Nouveau — ProxyBook</p>
+  <h2 style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:#e8edf5;margin-bottom:14px;line-height:1.2">Votre plateforme de réservation<br>en ligne personnalisée</h2>
+  <p style="color:#5b6e85;font-size:1rem;max-width:520px;margin:0 auto 36px">Chaque client ProxyBot Pro obtient sa propre page de réservation sur <strong style="color:#e8edf5">proxybook.fr/votre-nom</strong> — disponible 24h/24, sans commission.</p>
+  <a href="https://proxybook.fr" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#0057FF,#00C8F0);color:#fff;font-weight:800;font-size:1.15rem;padding:20px 48px;border-radius:14px;text-decoration:none;box-shadow:0 8px 32px rgba(0,87,255,.35);transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 44px rgba(0,87,255,.5)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 32px rgba(0,87,255,.35)'">
+    📅 Réserver en ligne — ProxyBook
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <p style="margin-top:18px;font-size:.78rem;color:#5b6e85">Sans engagement · Sans commission · Activé en 48h</p>
+</section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
       <a href="#" class="nav-logo" style="display:inline-flex;margin-bottom:10px">
-        <div class="nav-logo-icon" style="width:28px;height:28px;font-size:.85rem">💬</div>
+        <img src="/logo.png" style="width:28px;height:28px;border-radius:7px;object-fit:cover;" alt="ProxyBot Pro"/>
         <span style="font-family:var(--font-head);font-weight:700">ProxyBot<span style="color:var(--green)">Pro</span></span>
       </a>
       <p>Solutions IA pour les professionnels français. Chatbots, sites web, plateformes et automatisation — livrés clé en main.</p>
