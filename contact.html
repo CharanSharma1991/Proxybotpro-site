@@ -19,7 +19,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-cta{background:var(--blue);color:#fff;padding:0.55rem 1.4rem;border-radius:6px;text-decoration:none;font-size:0.85rem;font-weight:700;}
 
 /* HERO */
-.hero{padding:9rem 2.5rem 3rem;text-align:center;position:relative;background-image:url("/05_CONTACT_1920x1080.jpg");background-size:cover;background-position:center;background-attachment:fixed;}
+.hero{padding:9rem 2.5rem 3rem;text-align:center;position:relative;}
 .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:500px;background:radial-gradient(ellipse,rgba(0,200,240,0.12) 0%,transparent 70%);pointer-events:none;}
 .badge{display:inline-block;background:rgba(0,200,240,0.1);border:1px solid rgba(0,200,240,0.3);color:var(--cyan);font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:2px;padding:0.4rem 1rem;border-radius:50px;margin-bottom:1.5rem;text-transform:uppercase;}
 .hero h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;margin-bottom:0.8rem;}
@@ -75,9 +75,12 @@ footer{border-top:1px solid rgba(255,255,255,0.06);padding:2rem 2.5rem;text-alig
 footer a{color:var(--grey);text-decoration:none;}
 @media(max-width:900px){.main{grid-template-columns:1fr;padding-left:1.2rem;padding-right:1.2rem;}.form-row{grid-template-columns:1fr;}}
 @media(max-width:768px){nav{padding:1rem 1.2rem;}.nav-links{display:none;}}
+
+#bgCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
 </style>
 </head>
 <body>
+<canvas id="bgCanvas"></canvas>
 
 <nav>
   <a href="index.html" class="logo">Proxy<span>Bot</span> Pro</a>
@@ -93,10 +96,9 @@ footer a{color:var(--grey);text-decoration:none;}
 
 <!-- HERO -->
 <section class="hero">
-  <div style="position:absolute;inset:0;background:rgba(6,11,24,.80);z-index:0;pointer-events:none"></div>
-  <div class="badge" style="position:relative;z-index:1;">/ contactez-nous /</div>
-  <h1 style="position:relative;z-index:1;">Parlons de votre<br/><span>projet digital</span></h1>
-  <p style="position:relative;z-index:1;">Devis gratuit sous 48h. Décrivez votre besoin et on vous répond rapidement.</p>
+  <div class="badge">/ contactez-nous /</div>
+  <h1>Parlons de votre<br/><span>projet digital</span></h1>
+  <p>Devis gratuit sous 48h. Décrivez votre besoin et on vous répond rapidement.</p>
 </section>
 
 <!-- MAIN -->
@@ -259,10 +261,39 @@ form.addEventListener('submit', async function(e) {
   } else {
     btn.disabled = false;
     btn.textContent = 'Envoyer ma demande →';
-    alert('Erreur lors de l'envoi. Veuillez réessayer ou nous contacter par email.');
+    alert("Erreur lors de l'envoi. Veuillez réessayer.");
   }
 });
 </script>
 
+<script>
+(function(){
+  var c=document.getElementById('bgCanvas');
+  var ctx=c.getContext('2d');
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  var cols=Math.floor(c.width/18);
+  var drops=[];
+  for(var i=0;i<cols;i++)drops[i]=Math.random()*c.height;
+  var chars='01アイウエオカキクケコサシスセソタチツテトナニヌネノ';
+  var COLORS=['#0057FF','#00C8F0','#00FFB2','#0057FF','#00C8F0'];
+  function draw(){
+    ctx.fillStyle='rgba(6,11,24,0.10)';
+    ctx.fillRect(0,0,c.width,c.height);
+    for(var i=0;i<drops.length;i++){
+      var ch=chars[Math.floor(Math.random()*chars.length)];
+      var bright=drops[i]<80;
+      ctx.font=(bright?'bold ':'')+'13px monospace';
+      ctx.fillStyle=bright?'#00FFB2':COLORS[i%COLORS.length];
+      ctx.globalAlpha=bright?0.95:0.18+Math.random()*0.25;
+      ctx.fillText(ch,i*18,drops[i]);
+      ctx.globalAlpha=1;
+      if(drops[i]>c.height&&Math.random()>0.975)drops[i]=0;
+      else drops[i]+=15;
+    }
+  }
+  setInterval(draw,55);
+})();
+</script>
 </body>
 </html>
