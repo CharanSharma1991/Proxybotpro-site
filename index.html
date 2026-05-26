@@ -60,7 +60,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 @media(max-width:600px){nav{padding:14px 20px}.cta-box{padding:40px 24px}footer{padding:28px 20px}}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;background-image:url("/01_ACCUEIL_1920x1080.jpg");background-size:cover;background-position:center;background-attachment:fixed}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
 .hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(37,211,102,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(37,211,102,.055) 1px,transparent 1px);background-size:40px 40px;animation:gridMove 22s linear infinite;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent);mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent)}
 .hero-glow{position:absolute;top:5%;left:50%;transform:translateX(-50%);width:700px;height:500px;pointer-events:none;background:radial-gradient(ellipse,rgba(37,211,102,.1) 0%,transparent 70%);filter:blur(50px)}
 .badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:100px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.22);color:var(--green);font-size:.77rem;font-weight:600;letter-spacing:.04em;margin-bottom:28px}
@@ -183,6 +183,8 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
 .float-wa-ring{position:fixed;bottom:26px;right:26px;z-index:199;width:54px;height:54px;border-radius:50%;border:2px solid var(--green);pointer-events:none;animation:pulseRing 2.2s ease-out infinite}
 .float-wa{position:fixed;bottom:26px;right:26px;z-index:200;width:54px;height:54px;border-radius:50%;background:var(--green);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);animation:float 3s ease-in-out infinite;text-decoration:none;transition:transform .2s}
 .float-wa:hover{transform:scale(1.1) !important}
+
+#bgCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
 </style>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -190,6 +192,7 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png">
 </head>
 <body>
+<canvas id="bgCanvas"></canvas>
 
 <!-- NAV -->
 <nav>
@@ -240,7 +243,6 @@ footer{border-top:1px solid var(--border);padding:40px 40px 28px;color:var(--mut
 
 <!-- HERO -->
 <div class="hero">
-  <div style="position:absolute;inset:0;background:rgba(8,11,18,.78);z-index:0;pointer-events:none"></div>
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="badge fade-up"><div class="badge-dot"></div>Solutions IA pour les professionnels français</div>
@@ -548,5 +550,34 @@ appendMsg('resto','bot',BOTS.resto.welcome);
 appendMsg('kine','bot',BOTS.kine.welcome);
 </script>
 <script src="/widget.js"></script>
+<script>
+(function(){
+  var c=document.getElementById('bgCanvas');
+  var ctx=c.getContext('2d');
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  var cols=Math.floor(c.width/18);
+  var drops=[];
+  for(var i=0;i<cols;i++)drops[i]=Math.random()*c.height;
+  var chars='01アイウエオカキクケコサシスセソタチツテトナニヌネノ';
+  var COLORS=['#0057FF','#00C8F0','#00FFB2','#0057FF','#00C8F0'];
+  function draw(){
+    ctx.fillStyle='rgba(6,11,24,0.10)';
+    ctx.fillRect(0,0,c.width,c.height);
+    for(var i=0;i<drops.length;i++){
+      var ch=chars[Math.floor(Math.random()*chars.length)];
+      var bright=drops[i]<80;
+      ctx.font=(bright?'bold ':'')+'13px monospace';
+      ctx.fillStyle=bright?'#00FFB2':COLORS[i%COLORS.length];
+      ctx.globalAlpha=bright?0.95:0.18+Math.random()*0.25;
+      ctx.fillText(ch,i*18,drops[i]);
+      ctx.globalAlpha=1;
+      if(drops[i]>c.height&&Math.random()>0.975)drops[i]=0;
+      else drops[i]+=15;
+    }
+  }
+  setInterval(draw,55);
+})();
+</script>
 </body>
 </html>
