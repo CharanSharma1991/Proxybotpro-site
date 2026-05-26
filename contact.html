@@ -156,7 +156,8 @@ footer a{color:var(--grey);text-decoration:none;}
     <h2>Demande de devis gratuit</h2>
     <p>Réponse garantie sous 48h · Aucun engagement</p>
 
-    <div id="formWrapper">
+    <form id="formWrapper" action="https://formspree.io/f/xdabkook" method="POST">
+      <input type="hidden" name="_subject" value="[ProxyBot Pro] Nouvelle demande de devis"/>
       <div class="form-row">
         <div class="form-group">
           <label for="nom">Nom *</label>
@@ -217,11 +218,11 @@ footer a{color:var(--grey);text-decoration:none;}
         </select>
       </div>
 
-      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+      <button class="submit-btn" id="submitBtn" type="submit">
         Envoyer ma demande →
       </button>
       <p class="form-note">En soumettant ce formulaire, vous acceptez d'être recontacté par ProxyBot Pro concernant votre demande.</p>
-    </div>
+    </form>
 
     <!-- SUCCESS -->
     <div class="success-msg" id="successMsg">
@@ -238,67 +239,28 @@ footer a{color:var(--grey);text-decoration:none;}
 </footer>
 
 <script>
-function handleSubmit() {
-  const nom = document.getElementById('nom').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const service = document.getElementById('service').value;
-  const message = document.getElementById('message').value.trim();
-
-  if (!nom || !email || !service || !message) {
-    alert('Merci de remplir les champs obligatoires (*).');
-    return;
-  }
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    alert('Veuillez entrer une adresse email valide.');
-    return;
-  }
-
+const form = document.getElementById('formWrapper');
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = 'Envoi en cours...';
-
-  const prenom = document.getElementById('prenom').value.trim();
-  const entreprise = document.getElementById('entreprise').value.trim();
-  const telephone = document.getElementById('telephone').value.trim();
-  const budget = document.getElementById('budget').value;
-
-  // Build mailto link and open email client as fallback
-  const subject = encodeURIComponent(`[ProxyBot Pro] Demande de devis — ${service}`);
-  const body = encodeURIComponent(
-`Nouvelle demande de contact via le site ProxyBot Pro
-=====================================================
-
-Nom : ${nom} ${prenom}
-Email : ${email}
-Téléphone : ${telephone || 'Non renseigné'}
-Entreprise : ${entreprise || 'Non renseignée'}
-
-Service souhaité : ${service}
-Budget envisagé : ${budget || 'Non renseigné'}
-
-Message :
-${message}
-
------
-Envoyé depuis le formulaire www.proxybotpro.fr/contact`
-  );
-
-  window.location.href = `mailto:contact@proxybotpro.fr?subject=${subject}&body=${body}`;
-
-  // Show success after short delay
-  setTimeout(() => {
-    document.getElementById('formWrapper').style.display = 'none';
+  const email = document.getElementById('email').value.trim();
+  const res = await fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  });
+  if (res.ok) {
+    form.style.display = 'none';
     const successEl = document.getElementById('successMsg');
     successEl.style.display = 'block';
     document.getElementById('successEmail').textContent = email;
-  }, 800);
-}
-
-// Allow Enter key to submit
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && e.ctrlKey) handleSubmit();
+  } else {
+    btn.disabled = false;
+    btn.textContent = 'Envoyer ma demande →';
+    alert('Erreur lors de l'envoi. Veuillez réessayer ou nous contacter par email.');
+  }
 });
 </script>
 
