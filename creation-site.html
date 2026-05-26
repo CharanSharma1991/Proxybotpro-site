@@ -29,7 +29,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-cta:hover{background:var(--cyan);color:var(--navy);}
 
 /* HERO */
-.hero{padding:9rem 2.5rem 4rem;text-align:center;position:relative;background-image:url("/02_CREATION_SITE_1920x1080.jpg");background-size:cover;background-position:center;background-attachment:fixed;}
+.hero{padding:9rem 2.5rem 4rem;text-align:center;position:relative;}
 .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(ellipse,rgba(0,87,255,0.18) 0%,transparent 70%);pointer-events:none;}
 .badge{display:inline-block;background:rgba(0,200,240,0.12);border:1px solid rgba(0,200,240,0.3);color:var(--cyan);font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:2px;padding:0.4rem 1rem;border-radius:50px;margin-bottom:1.5rem;text-transform:uppercase;}
 .hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.1;margin-bottom:1.2rem;}
@@ -91,9 +91,12 @@ footer a{color:var(--grey);text-decoration:none;}
   .maint-card{grid-template-columns:1fr;}
   .maint-icons{grid-template-columns:repeat(3,1fr);}
 }
+
+#bgCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
 </style>
 </head>
 <body>
+<canvas id="bgCanvas"></canvas>
 
 <nav>
   <a href="index.html" class="logo">Proxy<span>Bot</span> Pro</a>
@@ -109,10 +112,9 @@ footer a{color:var(--grey);text-decoration:none;}
 
 <!-- HERO -->
 <section class="hero">
-  <div style="position:absolute;inset:0;background:rgba(6,11,24,.80);z-index:0;pointer-events:none"></div>
-  <div class="badge" style="position:relative;z-index:1;">/ création de site web /</div>
-  <h1 style="position:relative;z-index:1;">Votre site web <span>professionnel</span>,<br/>clé en main.</h1>
-  <p style="position:relative;z-index:1;">Sites vitrines, e-commerce, plateformes — conçus sur mesure, optimisés SEO, hébergés et maintenus pour vous.</p>
+  <div class="badge">/ création de site web /</div>
+  <h1>Votre site web <span>professionnel</span>,<br/>clé en main.</h1>
+  <p>Sites vitrines, e-commerce, plateformes — conçus sur mesure, optimisés SEO, hébergés et maintenus pour vous.</p>
 </section>
 
 <!-- PACKAGES -->
@@ -308,5 +310,34 @@ footer a{color:var(--grey);text-decoration:none;}
   <p style="margin-top:0.4rem;">TVA non applicable art. 293B CGI · © 2026 ProxyBot Pro</p>
 </footer>
 
+<script>
+(function(){
+  var c=document.getElementById('bgCanvas');
+  var ctx=c.getContext('2d');
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  var cols=Math.floor(c.width/18);
+  var drops=[];
+  for(var i=0;i<cols;i++)drops[i]=Math.random()*c.height;
+  var chars='01アイウエオカキクケコサシスセソタチツテトナニヌネノ';
+  var COLORS=['#0057FF','#00C8F0','#00FFB2','#0057FF','#00C8F0'];
+  function draw(){
+    ctx.fillStyle='rgba(6,11,24,0.10)';
+    ctx.fillRect(0,0,c.width,c.height);
+    for(var i=0;i<drops.length;i++){
+      var ch=chars[Math.floor(Math.random()*chars.length)];
+      var bright=drops[i]<80;
+      ctx.font=(bright?'bold ':'')+'13px monospace';
+      ctx.fillStyle=bright?'#00FFB2':COLORS[i%COLORS.length];
+      ctx.globalAlpha=bright?0.95:0.18+Math.random()*0.25;
+      ctx.fillText(ch,i*18,drops[i]);
+      ctx.globalAlpha=1;
+      if(drops[i]>c.height&&Math.random()>0.975)drops[i]=0;
+      else drops[i]+=15;
+    }
+  }
+  setInterval(draw,55);
+})();
+</script>
 </body>
 </html>
