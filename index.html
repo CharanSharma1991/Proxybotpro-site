@@ -421,12 +421,9 @@ body.pbp-revealed #pbp-bg-veil { opacity: 1; }
 @keyframes pbpFadeQ { to{opacity:0} }
 /* Hide intro after transition */
 body.pbp-revealed #pbp-intro { pointer-events:none; opacity:0; transition:opacity .1s .8s; }
-@keyframes pbpExitWipeIn { from{transform:translateX(-100%)} to{transform:translateX(0)} }
 </style>
 </head>
 <body>
-  <div id="pbp-exit-wipe" style="position:fixed;inset:0;z-index:9999;background:linear-gradient(90deg,#041820 0%,#065a6e 40%,#00C8C8 80%,#8DEBFF 100%);transform:translateX(-100%);pointer-events:none;animation:none;"></div>
-<div id="pbp-exit-scan" style="position:fixed;top:-3px;left:0;right:0;height:3px;z-index:10000;background:linear-gradient(90deg,transparent,rgba(0,200,240,.7),#8DEBFF,rgba(0,200,240,.7),transparent);box-shadow:0 0 20px rgba(0,200,240,.9);opacity:0;pointer-events:none;transition:top .5s ease-in;"></div>
 
 <!-- ═══ PBP CINEMATIC INTRO ═══ -->
 <div id="pbp-intro">
@@ -900,29 +897,6 @@ appendMsg('kine','bot',BOTS.kine.welcome);
     requestAnimationFrame(parallaxLoop);
   })();
 
-})();
-<script>
-(function(){
-  var ew=document.getElementById('pbp-exit-wipe');
-  var es=document.getElementById('pbp-exit-scan');
-  document.querySelectorAll('a[href]').forEach(function(a){
-    var href=a.getAttribute('href');
-    if(!href)return;
-    var isSubPage=['creation-site.html','creation-plateforme.html','bots-automatisation.html','contact.html','calculateur.html'].some(function(p){return href.includes(p);});
-    if(!isSubPage)return;
-    a.addEventListener('click',function(e){
-      if(!document.body.classList.contains('pbp-revealed'))return;
-      e.preventDefault();
-      var dest=href;
-      ew.style.animation='none';
-      ew.style.transform='translateX(-100%)';
-      void ew.offsetWidth;
-      ew.style.animation='pbpExitWipeIn .65s cubic-bezier(.77,0,.18,1) forwards';
-      es.style.opacity='1';es.style.top='-3px';
-      setTimeout(function(){es.style.top='100vh';},50);
-      setTimeout(function(){window.location.href=dest;},620);
-    });
-  });
 })();
 </script>
 </body>
